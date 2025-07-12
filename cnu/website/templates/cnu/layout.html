@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'cnu/index.css'%}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="icon" href="{% static 'cnu/assets/placeholder.png'%}" type="image/png">
+    <title>CNU: {% block title %}{% endblock %}</title>
+    {% block script %}
+    {% endblock %}
+</head>
+<body>
+<!-- Navbar start-->
+<!-- Topbar -->
+<div class="bg-dark text-light py-1">
+    <div class="container-fluid d-flex justify-content-end align-items-center small">
+        <a href="{% url 'calendar' %}" class="text-light me-3 text-decoration-none">Calendar</a>
+        <span class="text-warning">|</span>
+        <a href="https://edus.ro/" class="text-light mx-3 text-decoration-none" target="_blank">Catalog Electronic</a>
+    </div>
+</div>
+
+<!-- Main Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mt-3">
+    <div class="container-fluid mb-1">
+        <!-- Logo & Title -->
+        <a class="navbar-brand d-flex align-items-center ml-5" href="/">
+        <img src="{% static 'cnu/assets/placeholder.png' %}" alt="CNU Logo">
+        <div class="ms-2">
+            <strong>Colegiul Național</strong><br>
+            <span style="font-size: 0.9rem;">„Unirea” Turnu Măgurele</span>
+        </div>
+        </a>
+
+        <!-- Toggler -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Nav Links -->
+        <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
+        <ul class="navbar-nav align-items-center">
+            <li class="nav-item">
+            <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">Acasă</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link {% if request.path == '/despre/' %}active{% endif %}" href="/despre/">Despre</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link {% if request.path == '/admitere/' %}active{% endif %}" href="/admitere/">Admitere</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link {% if request.path == '/contact/' %}active{% endif %}" href="/contact/">Contact</a>
+            </li>
+        </ul>
+        </div>
+    </div>
+    </nav>
+
+<!-- Navbar end -->
+
+
+    <!-- Body start-->
+        {% block body %}
+        {% endblock %}
+    <!-- Body end-->
+</body>
+<!-- Footer -->
+<footer class="bg-dark text-light text-center py-3 fixed-footer">
+    <div class="container">
+        <!-- Social icons -->
+            <a href="https://www.facebook.com/unireaTurnuMagurele/?locale=ro_RO" target="_blank" class="text-light me-3 text-decoration-none">
+            <i class="fab fa-facebook fa-lg"></i>
+            </a>
+            <a href="https://www.instagram.com/colegiulnationalunireatr/" target="_blank" class="text-light me-3 text-decoration-none">
+            <i class="fab fa-instagram fa-lg"></i>
+            </a>
+            <a href="https://ro.wikipedia.org/wiki/Colegiul_Na%C8%9Bional_Unirea_din_Turnu-M%C4%83gurele" target="_blank" class="text-light text-decoration-none">
+            <i class="bi bi-wikipedia fa-lg"></i>
+            </a>
+
+
+        <!-- Copyright -->
+        <div>
+            <small>&copy; {% now "Y" %} Colegiul National 'Unirea' Turnu Magurele. All rights reserved. | Powered by: <code>Dorcea Matei</code> <a href='https://github.com/Matttei' target="_blank"><i class="bi bi-github" style="color: rgb(255, 255, 255);"></i></a></small>
+        </div>
+    </div>
+</footer>
+
+</html>
