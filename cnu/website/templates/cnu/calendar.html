@@ -4,17 +4,83 @@
     Calendar
 {% endblock %}
 {% block body %}
-    <div class="layout-container">
-        <h1 class="text-center mb-5">Evenimente - Colegiul National 'Unirea' Turnu Magurele</h1>
-        <div class="event-tab">
-            <div class="active-events">
-                <h5 class="ml-1">Evenimente active</h5>
-                <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat consectetur ipsa, id qui natus omnis voluptas maiores voluptates. Illum assumenda nihil porro atque. Officiis eos dicta quam tempora soluta quis?</p>
-            </div>
-            <div class="past-events">
-                <h5 class="ml-1">Ultimele evenimente</h5>
-                <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos corrupti laudantium ex aut voluptatem esse nemo commodi dicta dolore velit, numquam qui beatae quaerat totam optio eaque distinctio blanditiis perferendis.</p>
-            </div>
+<div class="layout-container">
+    <h1 class="text-center mb-5">Evenimente - Colegiul Național "Unirea" Turnu Măgurele</h1>
+    
+    <div class="event-tab">
+
+        <!-- Active Events -->
+        <div class="active-events mt-4">
+            <h4 class="ml-1 mb-4 text-success border-bottom pb-2">📅 Evenimente active</h4>
+            {% if active_events %}
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                    {% for event in active_events %}
+                        <div class="col">
+                            <div class="card h-100 shadow-sm border-success border-2">
+                                <div class="card-body">
+                                    <h5 class="card-title text-success fw-bold">{{ event.title }}</h5>
+                                    <p class="card-text">{{ event.description|truncatewords:20 }}</p>
+                                    <div class="mb-2">
+                                        <i class="bi bi-calendar-event"></i>
+                                        <small class="text-muted">
+                                            {{ event.startDateTime|date:"d M Y H:i" }} – {{ event.endDateTime|date:"d M Y H:i" }}
+                                        </small>
+                                    </div>
+                                        <div>
+                                            {% if event.classes %}
+                                                <span class="badge bg-success-subtle text-success border border-success me-1">
+                                                    Clasa: {{ event.get_classes_display }}
+                                                </span>
+                                            {% else %}
+                                                <span class="badge bg-secondary-subtle text-muted">Fără clasă asociată</span>
+                                            {% endif %}
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-muted">Nu există evenimente active.</p>
+            {% endif %}
         </div>
+
+        <!-- Expired Events -->
+        <div class="past-events mt-5">
+            <h4 class="ml-1 mb-4 text-secondary border-bottom pb-2">🕘 Ultimele evenimente</h4>
+            {% if expired_events %}
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                    {% for event in expired_events %}
+                        <div class="col">
+                            <div class="card h-100 shadow-sm border-secondary border-2">
+                                <div class="card-body">
+                                    <h5 class="card-title text-secondary fw-bold">{{ event.title }}</h5>
+                                    <p class="card-text">{{ event.description|truncatewords:20 }}</p>
+                                    <div class="mb-2">
+                                        <i class="bi bi-calendar-check"></i>
+                                        <small class="text-muted">
+                                            {{ event.startDateTime|date:"d M Y H:i" }} – {{ event.endDateTime|date:"d M Y H:i" }}
+                                        </small>
+                                    </div>
+                                        <div>
+                                            {% if event.classes %}
+                                                <span class="badge bg-success-subtle text-success border border-success me-1">
+                                                    Clasa: {{ event.get_classes_display }}
+                                                </span>
+                                            {% else %}
+                                                <span class="badge bg-secondary-subtle text-muted">Fără clasă asociată</span>
+                                            {% endif %}
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-muted">Nu există evenimente trecute.</p>
+            {% endif %}
+        </div>
+
     </div>
+</div>
 {% endblock %}
