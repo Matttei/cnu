@@ -26,3 +26,10 @@ def calendar(request):
 
 def contact(request):
     return render(request, 'cnu/contact.html')
+
+
+def despre(request):
+    return render(request, 'cnu/despre.html')
+
+def admitere(request):
+    return render(request, 'cnu/admitere.html')

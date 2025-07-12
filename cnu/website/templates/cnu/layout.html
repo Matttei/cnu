@@ -51,10 +51,10 @@
             <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">Acasă</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link {% if request.path == '/despre/' %}active{% endif %}" href="/despre/">Despre</a>
+            <a class="nav-link {% if request.path == '/despre/' %}active{% endif %}" href="{% url 'despre' %}">Despre</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link {% if request.path == '/admitere/' %}active{% endif %}" href="/admitere/">Admitere</a>
+            <a class="nav-link {% if request.path == '/admitere/' %}active{% endif %}" href="{% url 'admitere' %}">Admitere</a>
             </li>
             <li class="nav-item">
             <a class="nav-link {% if request.path == '/contact/' %}active{% endif %}" href="{% url 'contact' %}">Contact</a>

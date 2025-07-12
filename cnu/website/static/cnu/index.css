@@ -59,9 +59,9 @@ body{
     transition: color 0.3s ease;
 }
 
-/* Active link (for the current page) */
+
 .navbar-nav .nav-link.active {
-    color: #f7c200 !important;  /* Yellow */
+    color: #f7c200 !important;  
     font-weight: bold;
 }
 
@@ -82,7 +82,7 @@ a:hover{
     text-decoration: none;
 }
 .layout-container {
-    margin: 50px auto 100px auto; /* top, auto sides, bottom to avoid footer overlap */
+    margin: 50px auto 100px auto; 
     margin-left: 50px;
     margin-right: 50px;
     padding: 30px 25px;
@@ -93,7 +93,6 @@ a:hover{
     border-bottom: 3px solid #f7c200;
 }
 
-/* Optional: subtle hover effect */
 .layout-container:hover {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
