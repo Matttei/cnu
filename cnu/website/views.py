@@ -1,6 +1,14 @@
 from django.shortcuts import render
+from django.contrib.auth import authenticate, login, logout
 from django.utils import timezone
-from .models import Events
+from django.http import JsonResponse
+from django.urls import reverse
+from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse, HttpResponseRedirect
+from django.core.exceptions import ValidationError
+from django.contrib import messages
+from .models import Events, ContactForm
 # Create your views here.
 
 def index(request):
@@ -33,3 +41,14 @@ def despre(request):
 
 def admitere(request):
     return render(request, 'cnu/admitere.html')
+
+def contact_form(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+        created_at = timezone.now()
+        contact_form = ContactForm.objects.create(name=name, email=email, message=message, created_at=created_at)
+        return JsonResponse({'success': True, 'message': 'Mesajul a fost trimis, o sa va contactam in cel mai scurt timp posibil!'})
+    return render(request, 'cnu/contact.html')
+

@@ -28,3 +28,15 @@ class Events(models.Model):
 
     def __str__(self):
         return f"{self.title} ({self.startDateTime} - {self.endDateTime})"
+    
+
+
+
+class ContactForm(models.Model):
+    name = models.CharField(max_length=256)
+    message = models.TextField(blank=False)
+    email = models.EmailField()
+    created_at = models.DateTimeField(auto_now_add=False)
+
+    def __str__(self):
+        return f"{self.name} a trimis un mesaj la {self.created_at.strftime('%H:%M:%S')}"

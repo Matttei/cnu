@@ -4,8 +4,48 @@
     Contact
 {% endblock %}
 {% block body %}
-    <div class="layout-container">
-        <h1 class="text-center mb-5"> Contacteaza-ne </h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita, numquam amet repellendus asperiores illo nam nesciunt obcaecati tenetur ex labore distinctio nobis, quod maiores dignissimos quidem eum quam ipsum nostrum!</p>
+<div class="layout-container">
+    <h1 class="text-center mb-5">Contactează-ne</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <p class="text-center mb-4">
+                Dacă ai întrebări sau nelămuriri, folosește formularul de mai jos sau contactează-ne telefonic.
+            </p>
+
+            <!-- Contact Form -->
+            <form method="post" class="p-4 shadow-sm rounded bg-light contact-form" action="{% url 'contact_form' %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="name" class="form-label">Nume</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Adresă de email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Mesaj</label>
+                    <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-warning w-100 contact-button">Trimite Mesajul</button>
+            </form>
+
+            <!-- Divider -->
+            <div class="text-center my-4">
+                <span class="text-muted">sau</span>
+            </div>
+
+            <!-- Phone Contact -->
+            <div class="text-center">
+                <p class="mb-1">📞 Sună-ne direct la:</p>
+                <h4><a href="tel:+40247416734" class="text-decoration-none text-dark fw-bold">+40 247 416 734</a></h4>
+                <p class="text-muted">Luni - Vineri, 08:00 - 16:00</p>
+            </div>
+        </div>
     </div>
+</div>
+{% endblock %}
+{% block script %}
+    <script src="{% static 'cnu/index.js' %}"></script>
 {% endblock %}
