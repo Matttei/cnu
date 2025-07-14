@@ -37,6 +37,46 @@
     </div>
   </div>
 </section>
+<!-- LATEST EVENTS / NEWS -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-5 text-primary">Ultimele Evenimente</h2>
+    <div class="row justify-content-center g-4">
+      {% if latest_events %}
+        {% for event in latest_events|slice:":2" %}
+        <div class="col-md-6 col-lg-5">
+          <a href="{% url 'calendar' %}" class="text-decoration-none">
+            <div class="d-flex align-items-start p-4 bg-light rounded-4 shadow-sm h-100 latest-news">
+              <!-- Circle Icon -->
+              <div class="flex-shrink-0 me-3">
+                <div class="bg-primary text-white d-flex justify-content-center align-items-center rounded-circle" style="width: 70px; height: 70px;">
+                  <i class="bi bi-calendar-event fs-3"></i>
+                </div>
+              </div>
+              <!-- Event Info -->
+              <div>
+                <h5 class="mb-1 fw-semibold text-dark">{{ event.title }}</h5>
+                <p class="mb-1 text-muted" style="font-size: 0.95rem;">
+                  {{ event.description|truncatewords:20 }}
+                </p>
+                <p class="mb-0 text-secondary" style="font-size: 0.85rem;">
+                  {% if event.startDateTime %}
+                    {{ event.startDateTime|date:"d M Y" }} &middot; {{ event.startDateTime|time:"H:i" }}
+                  {% else %}
+                    Data necunoscută
+                  {% endif %}
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      {% else %}
+        <p class="text-center text-muted">Nu există evenimente recente.</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
 
 
 {% endblock %}

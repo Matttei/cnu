@@ -36,7 +36,7 @@ class ContactForm(models.Model):
     name = models.CharField(max_length=256)
     message = models.TextField(blank=False)
     email = models.EmailField()
-    created_at = models.DateTimeField(auto_now_add=False)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.name} a trimis un mesaj la {self.created_at.strftime('%H:%M:%S')}"

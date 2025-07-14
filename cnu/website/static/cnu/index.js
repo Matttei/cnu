@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+    
 
     // ----------------------------
     // 1. INITIALIZATION & UTILITIES
@@ -51,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
             contactForm.reset();
         })
         .catch(error => {
-            showMessage(data.error, false)
+            showMessage(error.message || 'Eroare la trimitere.', false);
         });
     });
 });

@@ -17,6 +17,10 @@
     {% endblock %}
 </head>
 <body class="d-flex flex-column min-vh-100">
+        <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader"></div>
+    </div>
 <!-- Navbar start-->
 <!-- Topbar -->
 <div class="bg-dark text-light py-1 topbar">
@@ -24,6 +28,8 @@
         <a href="{% url 'calendar' %}" class="text-light me-3 text-decoration-none">Calendar</a>
         <span class="text-warning">|</span>
         <a href="https://edus.ro/" class="text-light mx-3 text-decoration-none" target="_blank">Catalog Electronic</a>
+        <span class="text-warning">|</span>
+        <a href="" class="text-light mx-3 text-decoration-none">Orar</a>
     </div>
 </div>
 
@@ -71,6 +77,12 @@
         {% block body %}
         {% endblock %}
     <!-- Body end-->
+<script>
+    window.addEventListener('load', function () {
+        const overlay = document.getElementById('loadingOverlay');
+        overlay.classList.add('hidden');
+    });
+</script>   
 </body>
 <!-- Footer -->
 <footer class="bg-dark text-light text-center py-3 fixed-footer">
@@ -83,13 +95,14 @@
             <i class="fab fa-instagram fa-lg"></i>
             </a>
             <a href="https://ro.wikipedia.org/wiki/Colegiul_Na%C8%9Bional_Unirea_din_Turnu-M%C4%83gurele" target="_blank" class="text-light text-decoration-none">
-            <i class="bi bi-wikipedia fa-lg"></i>
+            <i class="fab fa-wikipedia-w fa-lg"></i>
+
             </a>
 
 
         <!-- Copyright -->
         <div>
-            <small>&copy; {% now "Y" %} Colegiul National 'Unirea' Turnu Magurele. All rights reserved. | Powered by: <code style="font-size: 16px;">Dorcea Matei</code> <a href='https://github.com/Matttei' target="_blank"><i class="bi bi-github" style="color: rgb(255, 255, 255);"></i></a></small>
+            <small>&copy; {% now "Y" %} Colegiul National 'Unirea' Turnu Magurele. All rights reserved. | Powered by: <a href='https://github.com/Matttei' class="text-decoration-none" target="_blank" style="color: #f7c200; font-weight: bold; font-size:16px;">Dorcea Matei <i class="bi bi-code-slash"></i></a></small>
         </div>
     </div>
 </footer>
