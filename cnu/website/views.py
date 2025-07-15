@@ -59,3 +59,14 @@ def contact_form(request):
         return JsonResponse({'success': True, 'message': 'Mesajul a fost trimis, o să vă contactăm în cel mai scurt timp posibil! ✅'})
     return JsonResponse({'error': 'Metodă neacceptată.'}, status=400)
 
+
+def orar(request):
+    clase = []
+    litere = ['IX', 'X', 'XI', 'XII']
+    for an in litere:
+        for litera in ['A', 'B', 'C', 'D', 'E']:
+            clase.append({
+                'value': f"{an}{litera}",
+                'label': f"Clasa a {an}-a {litera}"
+            })
+    return render(request, 'cnu/orar.html', {'clase': clase})

@@ -29,7 +29,7 @@
         <span class="text-warning">|</span>
         <a href="https://edus.ro/" class="text-light mx-3 text-decoration-none" target="_blank">Catalog Electronic</a>
         <span class="text-warning">|</span>
-        <a href="" class="text-light mx-3 text-decoration-none">Orar</a>
+        <a href="{% url 'orar' %}" class="text-light mx-3 text-decoration-none">Orar</a>
     </div>
 </div>
 
@@ -77,12 +77,12 @@
         {% block body %}
         {% endblock %}
     <!-- Body end-->
-<script>
+    <script>
     window.addEventListener('load', function () {
         const overlay = document.getElementById('loadingOverlay');
         overlay.classList.add('hidden');
     });
-</script>   
+</script>  
 </body>
 <!-- Footer -->
 <footer class="bg-dark text-light text-center py-3 fixed-footer">

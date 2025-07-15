@@ -24,21 +24,19 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     const contactForm = document.querySelector('.contact-form');
-    const feedback = document.querySelector('.form-feedback'); // un div unde afișăm mesajele
-
+    const feedback = document.querySelector('.form-feedback'); 
+    if (contactForm){
     contactForm.addEventListener('submit', function (event) {
         event.preventDefault();
 
         const formData = new FormData(contactForm);
         const message = document.getElementById('message');
 
-        // Validare simplă
         if (message.value.trim().length < 10) {
             alert('Mesaj scurt')
             return;
         }
 
-        // Trimitem datele
         fetch(contactForm.action, {
             method: 'POST',
             body: formData,
@@ -55,4 +53,34 @@ document.addEventListener('DOMContentLoaded', function () {
             showMessage(error.message || 'Eroare la trimitere.', false);
         });
     });
+    }
+        const select = document.getElementById("clasaSelect");
+        const downloadSection = document.getElementById("downloadSection");
+        const downloadLink = document.getElementById("downloadLink");
+
+        select.addEventListener("change", function () {
+            const clasa = select.value;
+            console.log(clasa);
+            if (clasa){
+                const fileUrl = `/media/orare/${clasa}.pdf`;
+                fetch(fileUrl, {method: 'HEAD'})
+                .then(res =>{
+                    if (res.ok){
+                        downloadLink.href = fileUrl;
+                        downloadSection.classList.remove('d-none');
+                    }
+                    else{
+                        downloadSection.classList.add('d-none');
+                        showMessage('⚠️ Orarul pentru această clasă nu a fost găsit sau nu a fost încă adăugat.');
+                    }
+                })
+                .catch(() => {
+                    downloadSection.classList.add('d-none');
+                    showMessage('⚠️ Eroare la verificarea fișierului.');
+                });
+            }
+            else{
+                downloadSection.classList.add('d-none');
+            }
+        });
 });

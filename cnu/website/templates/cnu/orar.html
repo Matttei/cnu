@@ -1,0 +1,78 @@
+{% extends 'cnu/layout.html' %}
+{% load static %}
+
+{% block title %}
+    Orar
+{% endblock %}
+
+{% block body %}
+<div class="layout-container">
+<div class="container py-5">
+    <h1 class="text-center mb-5 fw-bold">Orar</h1>
+    
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow rounded-4">
+                <div class="card-body">
+                    <form id="orar-form">
+                        <div class="mb-3">
+                            <label for="clasaSelect" class="form-label fw-semibold">Selectează clasa:</label>
+                            <select class="form-select" id="clasaSelect" required>
+                                <option value="">Alege o clasă...</option>
+                                {% for clasa in clase %}
+                                    <option value="{{ clasa.value }}">{{ clasa.label }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div id="downloadSection" class="mt-4 d-none text-center">
+                            <a id="downloadLink" href="#" class="btn btn-primary px-4 py-2 rounded-pill" download>
+                                <i class="bi bi-download me-2"></i> Descarcă orarul
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="my-5">
+
+    <div class="row">
+        <div class="col-lg-10 offset-lg-1">
+            <h2 class="text-center mb-4 fw-bold">Structura anului școlar 2024–2025</h2>
+            
+            <div class="accordion" id="structuraAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Vezi detalii structură
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#structuraAccordion">
+                        <div class="accordion-body fs-5">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">📅 <strong>Începere cursuri:</strong> 9 septembrie 2024</li>
+                                <li class="list-group-item">🧩 <strong>Modul 1:</strong> 9 septembrie – 25 octombrie 2024</li>
+                                <li class="list-group-item">🛌 <strong>Vacanță:</strong> 26 octombrie – 3 noiembrie 2024</li>
+                                <li class="list-group-item">🧩 <strong>Modul 2:</strong> 4 noiembrie – 20 decembrie 2024</li>
+                                <li class="list-group-item">🎄 <strong>Vacanță de iarnă:</strong> 21 decembrie – 7 ianuarie</li>
+                                <li class="list-group-item">🧩 <strong>Modul 3:</strong> 8 ianuarie – februarie 2025 (vacanță flexibilă)</li>
+                                <li class="list-group-item">🌷 <strong>Vacanță mobilă:</strong> o săptămână în februarie (10–28)</li>
+                                <li class="list-group-item">🧩 <strong>Modul 4:</strong> martie – 11 aprilie 2025</li>
+                                <li class="list-group-item">✝️ <strong>Vacanță Paște:</strong> 12 – 22 aprilie 2025</li>
+                                <li class="list-group-item">🧩 <strong>Modul 5:</strong> 23 aprilie – 20 iunie 2025</li>
+                                <li class="list-group-item">🌞 <strong>Vacanța de vară:</strong> din 21 iunie 2025</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+{% block script %}
+    <script src="{% static 'cnu/index.js' %}"></script>
+{% endblock %}
