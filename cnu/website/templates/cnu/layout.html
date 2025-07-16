@@ -17,94 +17,157 @@
     {% endblock %}
 </head>
 <body class="d-flex flex-column min-vh-100">
-        <!-- Loading Overlay -->
+    <!-- Loading Overlay -->
     <div class="loading-overlay" id="loadingOverlay">
         <div class="loader"></div>
     </div>
-<!-- Navbar start-->
-<!-- Topbar -->
-<div class="bg-dark text-light py-1 topbar">
-    <div class="container-fluid d-flex justify-content-end align-items-center small">
-        <a href="{% url 'calendar' %}" class="text-light me-3 text-decoration-none">Calendar</a>
-        <span class="text-warning">|</span>
-        <a href="https://edus.ro/" class="text-light mx-3 text-decoration-none" target="_blank">Catalog Electronic</a>
-        <span class="text-warning">|</span>
-        <a href="{% url 'orar' %}" class="text-light mx-3 text-decoration-none">Orar</a>
-    </div>
-</div>
 
-<!-- Main Navbar -->
+    <!-- Navbar start-->
+    <!-- Topbar -->
+    <div class="bg-dark text-light py-1 topbar">
+        <div class="container-fluid d-flex justify-content-end align-items-center small">
+            <a href="{% url 'calendar' %}" class="text-light me-3 text-decoration-none">Calendar</a>
+            <span class="text-warning">|</span>
+            <a href="https://edus.ro/" class="text-light mx-3 text-decoration-none" target="_blank">Catalog Electronic</a>
+            <span class="text-warning">|</span>
+            <a href="{% url 'orar' %}" class="text-light mx-3 text-decoration-none">Orar</a>
+        </div>
+    </div>
+
+    <!-- Main Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mt-3">
-    <div class="container-fluid mb-1">
-        <!-- Logo & Title -->
-        <a class="navbar-brand d-flex align-items-center ml-5" href="/">
-        <img src="{% static 'cnu/assets/placeholder.png' %}" alt="CNU Logo">
-        <div class="ms-2">
-            <strong>Colegiul Național</strong><br>
-            <span style="font-size: 0.9rem;">„Unirea” Turnu Măgurele</span>
+        <div class="container-fluid mb-1">
+            <!-- Logo & Title -->
+            <a class="navbar-brand d-flex align-items-center ml-5" href="/">
+                <img src="{% static 'cnu/assets/placeholder.png' %}" alt="CNU Logo">
+                <div class="ms-2">
+                    <strong>Colegiul Național</strong><br>
+                    <span style="font-size: 0.9rem;">„Unirea" Turnu Măgurele</span>
+                </div>
+            </a>
+
+            <!-- Toggler -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Nav Links -->
+            <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">Acasă</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/despre/' %}active{% endif %}" href="{% url 'despre' %}">Despre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/admitere/' %}active{% endif %}" href="{% url 'admitere' %}">Admitere</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/contact/' %}active{% endif %}" href="{% url 'contact' %}">Contact</a>
+                    </li>
+                    {% if user.is_authenticated and user.is_staff %}
+                    <!--Admin things-->
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == '/admin_cnu/' %} active {% endif %}" href="{% url 'cnu_admin' %}">Admin</a>
+                        </li>
+                    {% endif %} 
+                </ul>
+            </div>
         </div>
-        </a>
+    </nav>
+    <!-- Navbar end -->
 
-        <!-- Toggler -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
+    <!-- Accessibility Widget -->
+    <div class="accessibility-widget">
+    <button class="toggle-btn" onclick="toggleMenu()" aria-label="Accesibilitate">
+        <img src="{% static 'cnu/assets/acces.png' %}" alt="Accessibility Icon" width="46" height="46">
+    </button>
 
-        <!-- Nav Links -->
-        <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
-        <ul class="navbar-nav align-items-center">
-            <li class="nav-item">
-            <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">Acasă</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link {% if request.path == '/despre/' %}active{% endif %}" href="{% url 'despre' %}">Despre</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link {% if request.path == '/admitere/' %}active{% endif %}" href="{% url 'admitere' %}">Admitere</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link {% if request.path == '/contact/' %}active{% endif %}" href="{% url 'contact' %}">Contact</a>
-            </li>
-        </ul>
+        <div id="accessibility-menu" class="menu hidden">
+            <div class="menu-header">
+                <h3 class="menu-title">Opțiuni Accesibilitate</h3>
+                <button class="close-accessibility" onclick="closeMenu()" aria-label="Închide meniul">×</button>
+            </div>
+            
+            <div class="menu-content">
+                <button onclick="increaseFont()">
+                    <span class="menu-icon">🅰️</span>
+                    <span>Mărește textul</span>
+                </button>
+                <button onclick="decreaseFont()">
+                    <span class="menu-icon">🅿️</span>
+                    <span>Micșorează textul</span>
+                </button>
+                <button onclick="toggleGrayscale()">
+                    <span class="menu-icon">🌗</span>
+                    <span>Tonuri de gri</span>
+                </button>
+                <button onclick="toggleHighContrast()">
+                    <span class="menu-icon">🌈</span>
+                    <span>Contrast mare</span>
+                </button>
+                <button onclick="toggleNegativeContrast()">
+                    <span class="menu-icon">🌓</span>
+                    <span>Contrast negativ</span>
+                </button>
+                <button onclick="toggleLightBackground()">
+                    <span class="menu-icon">🌞</span>
+                    <span>Fundal luminos</span>
+                </button>
+                <button onclick="toggleUnderlineLinks()">
+                    <span class="menu-icon">🔗</span>
+                    <span>Legături subliniate</span>
+                </button>
+                <button onclick="toggleReadableFont()">
+                    <span class="menu-icon">🔤</span>
+                    <span>Font lizibil</span>
+                </button>
+                <button onclick="speakText()">
+                    <span class="menu-icon">🔊</span>
+                    <span>Redare audio</span>
+                </button>
+                <button onclick="resetAccessibility()">
+                    <span class="menu-icon">↩️</span>
+                    <span>Resetează</span>
+                </button>
+            </div>
         </div>
     </div>
-    </nav>
-
-<!-- Navbar end -->
-
 
     <!-- Body start-->
-        {% block body %}
-        {% endblock %}
+    {% block body %}
+    {% endblock %}
     <!-- Body end-->
-    <script>
-    window.addEventListener('load', function () {
-        const overlay = document.getElementById('loadingOverlay');
-        overlay.classList.add('hidden');
-    });
-</script>  
-</body>
-<!-- Footer -->
-<footer class="bg-dark text-light text-center py-3 fixed-footer">
-    <div class="container">
-        <!-- Social icons -->
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light text-center py-3 fixed-footer">
+        <div class="container">
+            <!-- Social icons -->
             <a href="https://www.facebook.com/unireaTurnuMagurele/?locale=ro_RO" target="_blank" class="text-light me-3 text-decoration-none">
-            <i class="fab fa-facebook fa-lg"></i>
+                <i class="fab fa-facebook fa-lg"></i>
             </a>
             <a href="https://www.instagram.com/colegiulnationalunireatr/" target="_blank" class="text-light me-3 text-decoration-none">
-            <i class="fab fa-instagram fa-lg"></i>
+                <i class="fab fa-instagram fa-lg"></i>
             </a>
             <a href="https://ro.wikipedia.org/wiki/Colegiul_Na%C8%9Bional_Unirea_din_Turnu-M%C4%83gurele" target="_blank" class="text-light text-decoration-none">
-            <i class="fab fa-wikipedia-w fa-lg"></i>
-
+                <i class="fab fa-wikipedia-w fa-lg"></i>
             </a>
 
-
-        <!-- Copyright -->
-        <div>
-            <small>&copy; {% now "Y" %} Colegiul National 'Unirea' Turnu Magurele. All rights reserved. | Powered by: <a href='https://github.com/Matttei' class="text-decoration-none" target="_blank" style="color: #f7c200; font-weight: bold; font-size:16px;">Dorcea Matei <i class="bi bi-code-slash"></i></a></small>
+            <!-- Copyright -->
+            <div>
+                <small>&copy; {% now "Y" %} Colegiul National 'Unirea' Turnu Magurele. All rights reserved. | Powered by: <a href='https://github.com/Matttei' class="text-decoration-none" target="_blank" style="color: #f7c200; font-weight: bold; font-size:16px;">Dorcea Matei <i class="bi bi-code-slash"></i></a></small>
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
+    <!-- Scripts -->
+    <script>
+        window.addEventListener('load', function () {
+            const overlay = document.getElementById('loadingOverlay');
+            overlay.classList.add('hidden');
+        });
+    </script>
+    <script src="{% static 'cnu/index.js' %}"></script>
+</body>
 </html>

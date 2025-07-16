@@ -70,3 +70,13 @@ def orar(request):
                 'label': f"Clasa a {an}-a {litera}"
             })
     return render(request, 'cnu/orar.html', {'clase': clase})
+
+
+
+def custom_404_view(request, exception):
+    return render(request, 'cnu/404.html', status=404)
+
+
+@login_required
+def admin_cnu(request):
+    return render(request, 'cnu/admin.html')

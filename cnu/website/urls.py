@@ -7,5 +7,6 @@ urlpatterns = [
     path('despre/', views.despre, name='despre'),
     path('admitere/', views.admitere, name='admitere'),
     path('contact/contact-form', views.contact_form, name='contact_form'),
-    path('orar/', views.orar, name='orar')
+    path('orar/', views.orar, name='orar'),
+    path('admin_cnu/', views.admin_cnu, name='cnu_admin')
 ]
