@@ -2,7 +2,7 @@ from django.db import models
 import os
 from django.contrib.auth.models import AbstractUser
 from django.core.exceptions import ValidationError
-
+from ckeditor_uploader.fields import RichTextUploadingField
 class User(AbstractUser):
     pass
 
@@ -40,3 +40,25 @@ class ContactForm(models.Model):
 
     def __str__(self):
         return f"{self.name} a trimis un mesaj la {self.created_at.strftime('%H:%M:%S')}"
+
+
+class Categorie(models.Model):
+    nume = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.nume
+
+class Anunt(models.Model):
+    STATUS_CHOICES = [
+        ('public', 'Public'),
+        ('private', 'Private'),
+    ]
+    categorie = models.ForeignKey(Categorie, on_delete=models.CASCADE, null=True, blank=True)
+    titlu = models.CharField(max_length=200)
+    status = models.CharField(max_length=20, default='public', choices=STATUS_CHOICES)
+    username = models.CharField(max_length=64)
+    views = models.IntegerField(default=0)
+    continut = RichTextUploadingField()
+    data_publicare = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.titlu

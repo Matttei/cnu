@@ -132,8 +132,6 @@ function toggleMenu() {
 
 function increaseFont() {
     fontSize = Math.min(200, fontSize + 10); // Max 200%
-    
-    // Remove all existing font-size classes
     document.body.classList.remove(
         'font-size-50', 'font-size-60', 'font-size-70', 'font-size-80', 'font-size-90',
         'font-size-100', 'font-size-110', 'font-size-120', 'font-size-130', 'font-size-140',
@@ -141,7 +139,6 @@ function increaseFont() {
         'font-size-200'
     );
     
-    // Add the new font-size class
     document.body.classList.add(`font-size-${fontSize}`);
     
     saveAccessibilitySettings();
@@ -149,8 +146,6 @@ function increaseFont() {
 }
 function decreaseFont() {
     fontSize = Math.max(50, fontSize - 10); // Min 50%
-    
-    // Remove all existing font-size classes
     document.body.classList.remove(
         'font-size-50', 'font-size-60', 'font-size-70', 'font-size-80', 'font-size-90',
         'font-size-100', 'font-size-110', 'font-size-120', 'font-size-130', 'font-size-140',
@@ -158,7 +153,6 @@ function decreaseFont() {
         'font-size-200'
     );
     
-    // Add the new font-size class
     document.body.classList.add(`font-size-${fontSize}`);
     
     saveAccessibilitySettings();
@@ -174,7 +168,6 @@ function toggleGrayscale() {
 }
 
 function toggleHighContrast() {
-    // Remove negative contrast first
     accessibilityState.negativeContrast = false;
     document.body.classList.remove('negative-contrast');
     
@@ -186,7 +179,6 @@ function toggleHighContrast() {
 }
 
 function toggleNegativeContrast() {
-    // Remove high contrast first
     accessibilityState.highContrast = false;
     document.body.classList.remove('high-contrast');
     
@@ -225,19 +217,10 @@ function speakText() {
     try {
         // Cancel any ongoing speech
         window.speechSynthesis.cancel();
-        
-        // Get main content text (exclude navigation and footer)
-        const mainContent = document.querySelector('main') || document.querySelector('[role="main"]') || document.body;
+        const mainContent = document.querySelector('body') || document.querySelector('[role="body"]');
         let textToSpeak = '';
-        
-        // Try to get the most relevant content
         const contentSelectors = [
-            'main',
-            '.content',
-            '.main-content',
-            '#content',
-            'article',
-            '.article'
+            'body',
         ];
         
         let contentElement = null;
@@ -470,12 +453,12 @@ function clearAccessibilitySettings() {
     }
 }
 
-// Auto-save settings when page is about to unload
+// Auto-save 
 window.addEventListener('beforeunload', function() {
     saveAccessibilitySettings();
 });
 
-// Expose functions to global scope for inline onclick handlers
+// Expose functions 
 window.toggleMenu = toggleMenu;
 window.closeMenu = closeMenu;
 window.increaseFont = increaseFont;

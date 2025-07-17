@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import User, Events, ContactForm
+from .models import User, Events, ContactForm, Anunt
 # Register your models here.
 admin.site.register(Events)
 admin.site.register(ContactForm)
+admin.site.register(Anunt)

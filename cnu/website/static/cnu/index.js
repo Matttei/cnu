@@ -34,6 +34,12 @@ document.addEventListener('DOMContentLoaded', function () {
             messageEl.remove();
         }, 7000);
     }
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('success') === '1') {
+        showMessage('✅ Anunțul a fost publicat cu succes!', true);
+        // remove it from URL without reloading
+        history.replaceState(null, '', window.location.pathname);
+    }
 
     const contactForm = document.querySelector('.contact-form');
     const feedback = document.querySelector('.form-feedback'); 

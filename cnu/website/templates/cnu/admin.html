@@ -1,11 +1,74 @@
 {% extends 'cnu/layout.html' %}
-{% load static %}
-{% block title %}
-    Admitere
-{% endblock %}
+{% load static widget_tweaks %}
+{% block title %}Admin Panel{% endblock %}
+
 {% block body %}
-    <div class="layout-container">
-        <h1 class="text-center mb-5"> Admitere</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita, numquam amet repellendus asperiores illo nam nesciunt obcaecati tenetur ex labore distinctio nobis, quod maiores dignissimos quidem eum quam ipsum nostrum!</p>
+<div class="container mt-5">
+    <!-- Header Admin Panel -->
+    <div class="bg-warning text-dark p-4 rounded shadow-sm mb-5">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2 class="mb-0">Admin Panel</h2>
+            <a href="/login-admin-7438xk/" class="btn btn-outline-dark">Panou de admin</a>
+        </div>
+        <p class="mt-2 mb-0">Completează formularul pentru a publica un anunț.</p>
     </div>
+
+    <!-- Form Card -->
+    <div class="card shadow-lg border-warning">
+        <div class="card-body">
+            <h4 class="card-title text-center mb-4 text-warning">Postează un Anunț Nou</h4>
+
+            <form method="POST" enctype="multipart/form-data" novalidate>
+                {% csrf_token %}
+                {{ form.media }}
+
+                <div class="mb-3">
+                    <label for="{{ form.titlu.id_for_label }}" class="form-label fw-semibold">Titlu</label>
+                    {{ form.titlu|add_class:"form-control" }}
+                    {% if form.titlu.errors %}
+                        <div class="text-danger small mt-1">{{ form.titlu.errors.0 }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    <label for="{{ form.username.id_for_label }}" class="form-label fw-semibold">Semnat de</label>
+                    {{ form.username|add_class:"form-control" }}
+                    {% if form.username.errors %}
+                        <div class="text-danger small mt-1">{{ form.username.errors.0 }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-4">
+                    <label for="{{ form.continut.id_for_label }}" class="form-label fw-semibold">Conținut</label>
+                    <br>
+                    {{ form.continut }}
+                    {% if form.continut.errors %}
+                        <div class="text-danger small mt-1">{{ form.continut.errors.0 }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    <label for="{{ form.categorie.id_for_label }}" class="form-label fw-semibold">Categorie existentă</label>
+                    {{ form.categorie|add_class:"form-select" }}
+                    {% if form.categorie.errors %}
+                        <div class="text-danger small mt-1">{{ form.categorie.errors.0 }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    <label for="{{ form.categorie_noua.id_for_label }}" class="form-label fw-semibold">Categorie nouă (opțional)</label>
+                    {{ form.categorie_noua|add_class:"form-control" }}
+                    <small class="form-text text-muted">Completează doar dacă vrei să adaugi o categorie nouă.</small>
+                    {% if form.categorie_noua.errors %}
+                        <div class="text-danger small mt-1">{{ form.categorie_noua.errors.0 }}</div>
+                    {% endif %}
+                </div>
+
+                <button type="submit" class="btn btn-warning w-100 text-dark fw-bold">
+                    📢 Publică Anunțul
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}

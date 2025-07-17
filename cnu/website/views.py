@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.exceptions import ValidationError
 from django.contrib import messages
+from .forms import AnuntForm
 from .models import Events, ContactForm
 # Create your views here.
 
@@ -79,4 +80,13 @@ def custom_404_view(request, exception):
 
 @login_required
 def admin_cnu(request):
-    return render(request, 'cnu/admin.html')
+    if request.method == 'POST':
+        form = AnuntForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/?success=1')
+    else:
+        form = AnuntForm()
+    return render(request, 'cnu/admin.html', {'form': form})
+
+
