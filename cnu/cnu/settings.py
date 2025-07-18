@@ -137,7 +137,7 @@ CKEDITOR_CONFIGS = {
         'height': 300,
         'width': '100%',
         'extraPlugins': ','.join([
-            'uploadimage',  # permite uploadul direct în editor
+            'uploadimage',  
         ]),
     },
 }

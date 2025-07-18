@@ -10,7 +10,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.exceptions import ValidationError
 from django.contrib import messages
 from .forms import AnuntForm
-from .models import Events, ContactForm
+from .models import Events, ContactForm, Anunt
 # Create your views here.
 
 def index(request):
@@ -90,3 +90,9 @@ def admin_cnu(request):
     return render(request, 'cnu/admin.html', {'form': form})
 
 
+def publicatii(request):
+    # For now the news will be only the annouces 
+    all_news = Anunt.objects.all()
+    return render(request, 'cnu/publicatii.html', {
+        'news': all_news,
+    })

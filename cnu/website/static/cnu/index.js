@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         setTimeout(() => {
             messageEl.remove();
-        }, 7000);
+        }, 3000);
     }
     const params = new URLSearchParams(window.location.search);
     if (params.get('success') === '1') {
