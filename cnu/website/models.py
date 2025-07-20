@@ -57,6 +57,7 @@ class Anunt(models.Model):
     titlu = models.CharField(max_length=200)
     status = models.CharField(max_length=20, default='public', choices=STATUS_CHOICES)
     username = models.CharField(max_length=64)
+    isPinned = models.BooleanField(default=False)
     views = models.IntegerField(default=0)
     continut = RichTextUploadingField()
     data_publicare = models.DateTimeField(auto_now_add=True)

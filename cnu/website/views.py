@@ -96,3 +96,21 @@ def publicatii(request):
     return render(request, 'cnu/publicatii.html', {
         'news': all_news,
     })
+
+def noutati(request):
+    noutati = Anunt.objects.filter(categorie__nume='Noutati')
+    return render(request, 'cnu/noutati.html',{
+        'noutati': noutati
+    })
+
+
+def activitati(request):
+    activitati = Anunt.objects.filter(categorie__nume='Activități')
+    return render(request, 'cnu/activitati.html',{
+        'activitati': activitati
+    })
+def proiecte(request):
+    proiecte = Anunt.objects.filter(categorie__nume='Proiecte')
+    return render(request, 'cnu/proiecte.html',{
+        'proiecte': proiecte
+    })

@@ -1,0 +1,43 @@
+{% extends 'cnu/layout.html' %}
+{% load static %}
+{% block title %}
+    Proiecte
+{% endblock %}
+{% block body %}
+    <div class="layout-container">
+        <div class="page-header">
+            <div class="container">
+                <h1 class="page-title">Proiecte</h1>
+            </div>
+        </div>
+        <!-- Proiecte tabs will load automatically here-->
+        {% for new in proiecte %}
+        <div class="news-grid">
+            <article class="news-card">
+                <!-- Image place --><img>
+                 <div class="news-content">
+                    <div class="news-meta justify-content-between">
+                        <span class="news-category">{{new.categorie}}</span>
+                        <div class="author-date">
+                            <span class="news-author">
+                                <i class="bi bi-person"></i>
+                                {{ new.username }}
+                            </span>
+                            <span class="news-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            {{ new.data_publicare|date:"d M" }}
+                        </span>
+                        </div>
+                    </div>
+                    <hr style="color: black;">
+                    <h3 class="news-title">{{new.titlu}}</h3>
+                    <p class="news-description">{{ new.continut|safe }}</p>
+                    <a href="#" class="read-more-btn">Citește mai mult</a>
+                 </div>
+            </article>
+        </div>
+        {% empty %}
+        {% endfor %}
+        <!-- Page Header -->
+    </div>
+{% endblock %}

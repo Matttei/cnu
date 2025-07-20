@@ -675,9 +675,20 @@ p {
 }
 .news-grid{
     display: grid;
+    animation: tragere 2s ease;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
     margin-bottom: 3rem;
+}
+@keyframes tragere {
+    from{
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0px);
+    }
 }
 /* Responsive Design */
 @media (max-width: 768px) {

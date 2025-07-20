@@ -10,8 +10,6 @@ let accessibilityState = {
 document.addEventListener('DOMContentLoaded', function () {
     
     loadAccessibilitySettings();
-    
-    // Add event listeners for outside clicks and escape key
     addEventListeners();
     // ----------------------------
     // 1. INITIALIZATION & UTILITIES
@@ -37,8 +35,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const params = new URLSearchParams(window.location.search);
     if (params.get('success') === '1') {
         showMessage('✅ Anunțul a fost publicat cu succes!', true);
-        // remove it from URL without reloading
-        history.replaceState(null, '', window.location.pathname);
     }
 
     const contactForm = document.querySelector('.contact-form');
