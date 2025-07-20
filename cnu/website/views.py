@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.utils import timezone
@@ -18,7 +19,7 @@ def index(request):
     seven_days_ago = now - timedelta(days=7)
     all_events = Events.objects.all()
     latest_events = []
-    all_pinned = Anunt.objects.filter(isPinned=True)[:3]
+    all_pinned = Anunt.objects.filter(Important=True).order_by('-data_publicare')[:3]
     if (len(all_pinned) == 3):
         latest_events = []
     else:
@@ -92,7 +93,11 @@ def admin_cnu(request):
             return redirect('/?success=1')
     else:
         form = AnuntForm()
-    return render(request, 'cnu/admin.html', {'form': form})
+    pinned_things = Anunt.objects.filter(Important=True)
+    return render(request, 'cnu/admin.html', {
+        'form': form,
+        'pinned': pinned_things
+        })
 
 
 def publicatii(request):
@@ -119,3 +124,33 @@ def proiecte(request):
     return render(request, 'cnu/proiecte.html',{
         'proiecte': proiecte
     })
+
+@login_required
+def unpin(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            event = Anunt.objects.get(pk=data.get('id'))
+            user = request.user
+            if event.Important:
+                event.Important = False
+                event.save()
+                return JsonResponse({
+                    'success': True,
+                    'message': 'Actiune realizata cu succes!'
+                })
+            else:
+                return JsonResponse({
+                    'success': False,
+                    'message': 'Acest anunt nu era Pinned!'
+                })
+        except Exception as e:
+            return JsonResponse({
+                'success': False,
+                'message': str(e)
+            })
+    return JsonResponse({
+        'success': False,
+        'message': 'Invalid request method.',
+    }, status=405)
+            

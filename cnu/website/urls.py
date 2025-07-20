@@ -12,5 +12,6 @@ urlpatterns = [
     path('publicatii/', views.publicatii, name='publicatii'),
     path('publicatii/noutati/', views.noutati, name='noutati'),
     path('publicatii/activitati', views.activitati, name='activitati'),
-    path('publicatii/proiecte/', views.proiecte, name='proiecte')
+    path('publicatii/proiecte/', views.proiecte, name='proiecte'),
+    path('unpin/', views.unpin, name='unpin')
 ]

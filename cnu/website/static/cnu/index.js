@@ -110,8 +110,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-    
-    
 });
 function closeMenu() {
     const menu = document.getElementById('accessibility-menu');

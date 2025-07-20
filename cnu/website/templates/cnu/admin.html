@@ -55,10 +55,12 @@
                     {% endif %}
                 </div>
                 <div class="mb-3 form-check">
-                    <label class="form-check-label fw-semibold mr-5" for="{{ form.isPinned.id_for_label }}">Important
+                    {{ form.Important|add_class:"form-check-input" }}
+                    <label class="form-check-label fw-semibold" for="{{ form.Important.id_for_label }}">
+                        Important
                     </label>
-                    {{ form.isPinned|add_class:"form-check-input" }}
                 </div>
+
                 <div class="mb-3">
                     <label for="{{ form.categorie_noua.id_for_label }}" class="form-label fw-semibold">Categorie nouă (opțional)</label>
                     {{ form.categorie_noua|add_class:"form-control" }}
@@ -74,5 +76,39 @@
             </form>
         </div>
     </div>
+    <!-- Pinned Announcements Section -->
+        <div class="card border-warning shadow-sm mb-5">
+            <div class="card-header bg-warning text-dark fw-bold">
+                🔔 Anunțuri Importante (Pinnate)
+            </div>
+            <div class="card-body">
+                {% if pinned %}
+                    <div class="row row-cols-1 row-cols-md-2 g-4">
+                        {% for pin in pinned %}
+                        {% csrf_token %}
+                            <div class="col">
+                                <div class="card h-100 border border-dark position-relative pin-card-{{pin.id}}" data-post-id="{{pin.id}}" id="postid-{{pin.id}}">
+                                    <div class="card-body" onclick="window.location.href='{% url 'publicatii' %}?scroll={{pin.id}}'" 
+                                    style="cursor: pointer;">
+                                        <h5 class="card-title">{{ pin.titlu }}</h5>
+                                        <p class="card-text small text-muted">Semnat de: {{ pin.username }}</p>
+                                        <div class="card-text">{{ pin.continut|safe }}</div>
+                                    </div>
+                                    <div class="card-footer text-end">
+                                        <button class="btn btn-danger unpin-btn" id="postid-{{pin.id}}" data-post-id="{{pin.id}}">📌 Anulează Pin-ul</button>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="text-muted">Nu sunt anunțuri importante în acest moment.</p>
+                {% endif %}
+            </div>
+        </div>
+
 </div>
+{% block script %}
+<script src="{% static 'cnu/admin.js' %}"></script>
+{% endblock %}
 {% endblock %}
