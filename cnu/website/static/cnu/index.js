@@ -36,6 +36,17 @@ document.addEventListener('DOMContentLoaded', function () {
     if (params.get('success') === '1') {
         showMessage('✅ Anunțul a fost publicat cu succes!', true);
     }
+    else if(params.get('scroll')){
+        const scrollTargetId = params.get('scroll');
+        // Scroll to the TargetId
+        const targetElement = document.getElementById(scrollTargetId);
+        if (targetElement){
+            targetElement.scrollIntoView({behavior: 'smooth'})
+
+            // Animation after scrolling
+            targetElement.classList.add('highlight-animation');
+        }
+    }
 
     const contactForm = document.querySelector('.contact-form');
     const feedback = document.querySelector('.form-feedback'); 

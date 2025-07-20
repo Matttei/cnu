@@ -18,8 +18,13 @@ def index(request):
     seven_days_ago = now - timedelta(days=7)
     all_events = Events.objects.all()
     latest_events = []
-    latest_events = Events.objects.filter(startDateTime__gte=seven_days_ago)[:3]  
+    all_pinned = Anunt.objects.filter(isPinned=True)[:3]
+    if (len(all_pinned) == 3):
+        latest_events = []
+    else:
+        latest_events = Events.objects.filter(startDateTime__gte=seven_days_ago)[:3]  
     return render(request, 'cnu/index.html', {
+        'all_pinned': all_pinned,
         'latest_events': latest_events
     })
 
@@ -92,25 +97,25 @@ def admin_cnu(request):
 
 def publicatii(request):
     # For now the news will be only the annouces 
-    all_news = Anunt.objects.all()
+    all_news = Anunt.objects.all().order_by('-data_publicare')
     return render(request, 'cnu/publicatii.html', {
         'news': all_news,
     })
 
 def noutati(request):
-    noutati = Anunt.objects.filter(categorie__nume='Noutati')
+    noutati = Anunt.objects.filter(categorie__nume='Noutati').order_by('-data_publicare')
     return render(request, 'cnu/noutati.html',{
         'noutati': noutati
     })
 
 
 def activitati(request):
-    activitati = Anunt.objects.filter(categorie__nume='Activități')
+    activitati = Anunt.objects.filter(categorie__nume='Activități').order_by('-data_publicare')
     return render(request, 'cnu/activitati.html',{
         'activitati': activitati
     })
 def proiecte(request):
-    proiecte = Anunt.objects.filter(categorie__nume='Proiecte')
+    proiecte = Anunt.objects.filter(categorie__nume='Proiecte').order_by('-data_publicare')
     return render(request, 'cnu/proiecte.html',{
         'proiecte': proiecte
     })

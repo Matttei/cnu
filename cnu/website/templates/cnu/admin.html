@@ -54,7 +54,11 @@
                         <div class="text-danger small mt-1">{{ form.categorie.errors.0 }}</div>
                     {% endif %}
                 </div>
-
+                <div class="mb-3 form-check">
+                    <label class="form-check-label fw-semibold mr-5" for="{{ form.isPinned.id_for_label }}">Important
+                    </label>
+                    {{ form.isPinned|add_class:"form-check-input" }}
+                </div>
                 <div class="mb-3">
                     <label for="{{ form.categorie_noua.id_for_label }}" class="form-label fw-semibold">Categorie nouă (opțional)</label>
                     {{ form.categorie_noua|add_class:"form-control" }}

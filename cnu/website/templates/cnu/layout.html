@@ -81,14 +81,16 @@
     <nav class="navbar navbar-light bg-white shadow-sm mt-3 mobile-navbar">
         <div class="container-fluid mb-1">
             <!-- Logo & Title -->
-            <a class="navbar-brand d-flex align-items-center" href="/">
+            <a class="navbar-brand d-flex align-items-center ml-n3" href="/">
                 <img src="{% static 'cnu/assets/placeholder.png' %}" alt="CNU Logo">
-                <div class="ms-2">
+                <div class="ms-2 mobile-brand">
                     <strong>Colegiul Național</strong><br>
                     <span style="font-size: 0.9rem;">„Unirea" Turnu Măgurele</span>
                 </div>
+                <div class="ms-2 smaller-width d-none">
+                    <strong>CNU</strong>
+                </div>
             </a>
-
             <!-- Mobile Menu Toggle -->
             <button class="mobile-menu-toggler" onclick="toggleMobileMenu()" aria-label="Toggle navigation">
                 <i class="bi bi-list"></i>
@@ -263,7 +265,7 @@
 
             <!-- Copyright -->
             <div>
-                <small>&copy; {% now "Y" %} Colegiul National 'Unirea' Turnu Magurele. All rights reserved. | Powered by: <a href='https://github.com/Matttei' class="text-decoration-none" target="_blank" style="color: #f7c200; font-weight: bold; font-size:16px;">Dorcea Matei <i class="bi bi-code-slash"></i></a></small>
+                <small>&copy; 1889 - {% now "Y" %} Colegiul National 'Unirea' Turnu Magurele. All rights reserved. | Powered by: <a href='https://github.com/Matttei' class="text-decoration-none" target="_blank" style="color: #f7c200; font-weight: bold; font-size:16px;">Dorcea Matei <i class="bi bi-code-slash"></i></a></small>
             </div>
         </div>
     </footer>

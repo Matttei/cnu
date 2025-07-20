@@ -6,7 +6,7 @@ class AnuntForm(forms.ModelForm):
 
     class Meta:
         model = Anunt
-        fields = ['titlu', 'username', 'categorie', 'categorie_noua', 'continut']
+        fields = ['titlu', 'username', 'categorie', 'categorie_noua', 'continut', 'isPinned']
 
     def clean(self):
         cleaned_data = super().clean()

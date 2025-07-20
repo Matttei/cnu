@@ -1686,3 +1686,32 @@ body.mobile-menu-open {
         background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
     }
 }
+/* Quick fix for smaller width */
+@media (max-width: 422px){
+    .mobile-brand{
+        display: none;
+    }
+    .smaller-width{
+        display: block !important;
+    }
+}
+
+
+@keyframes highlightFade {
+    0% {
+        background-color: yellow;
+        transform: scale(1.05);
+    }
+    50% {
+        background-color: #fff8b0;
+        transform: scale(1.02);
+    }
+    100% {
+        background-color: transparent;
+        transform: scale(1);
+    }
+}
+
+.highlight-animation {
+    animation: highlightFade 1.5s ease-in-out;
+}
