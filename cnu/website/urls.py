@@ -13,5 +13,6 @@ urlpatterns = [
     path('publicatii/noutati/', views.noutati, name='noutati'),
     path('publicatii/activitati', views.activitati, name='activitati'),
     path('publicatii/proiecte/', views.proiecte, name='proiecte'),
-    path('unpin/', views.unpin, name='unpin')
+    path('unpin/', views.unpin, name='unpin'),
+    path('publicatii/<int:publicatie_id>/', views.publicatie, name='publicatie')
 ]

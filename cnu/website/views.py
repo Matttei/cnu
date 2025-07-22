@@ -9,6 +9,8 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.exceptions import ValidationError
+from django.conf import settings
+from django.core.mail import send_mail
 from django.contrib import messages
 from .forms import AnuntForm
 from .models import Events, ContactForm, Anunt
@@ -62,10 +64,27 @@ def contact_form(request):
         name = request.POST.get('name')
         email = request.POST.get('email')
         message = request.POST.get('message')
-        contact_form = ContactForm.objects.create(name=name, email=email, message=message)
-        return JsonResponse({'success': True, 'message': 'Mesajul a fost trimis, o să vă contactăm în cel mai scurt timp posibil! ✅'})
-    return JsonResponse({'error': 'Metodă neacceptată.'}, status=400)
 
+        ContactForm.objects.create(name=name, email=email, message=message)
+
+        # Compose email
+        subject = f"Mesaj nou de la {name}"
+        body = f"""
+        Ai primit un mesaj nou de pe formularul de contact.
+
+        📧 Email: {email}
+        📝 Mesaj:{message}
+        """
+        send_mail(
+            subject,
+            body,
+            settings.EMAIL_HOST_USER,           # from email
+            ['mateidorcea@gmail.com'],          # to email (cnunirea.licee@yahoo.com)
+            fail_silently=False,
+        )
+        return JsonResponse({'success': True, 'message': 'Mesajul a fost trimis, o să vă contactăm în cel mai scurt timp posibil! ✅'})
+
+    return JsonResponse({'error': 'Metodă neacceptată.'}, status=400)
 
 def orar(request):
     clase = []
@@ -154,3 +173,12 @@ def unpin(request):
         'message': 'Invalid request method.',
     }, status=405)
             
+
+
+def publicatie(request, publicatie_id):
+    publicatie = Anunt.objects.get(pk=publicatie_id)
+    publicatie.views += 1
+    publicatie.save()
+    return render(request, 'cnu/publicatie.html', {
+        'publicatie': publicatie,
+    })

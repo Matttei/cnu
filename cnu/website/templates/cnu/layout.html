@@ -53,17 +53,61 @@
             <div class="navbar-nav ms-auto align-items-center">
                 <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">Acasă</a>
                 <a class="nav-link {% if request.path == '/despre/' %}active{% endif %}" href="{% url 'despre' %}">Despre</a>
-                <a class="nav-link {% if request.path == '/admitere/' %}active{% endif %}" href="{% url 'admitere' %}">Admitere</a>
-
-                <!-- Dropdown -->
                 <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle {% if request.path == '/noutati/' %}active{% endif %}" href="{% url 'publicatii' %}" id="proiecteDropdown" role="button">
+                    <a href="#" class="nav-link dropdown-toggle" id="exameneDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Examene
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="exameneDropdown">
+                        <li><a href="#" class="dropdown-item">Bacalaureat</a></li>
+                        <li><a href="#" class="dropdown-item">Admitere</a></li>
+                    </ul>
+                </div>
+
+                <!-- Proiecte/Activități Dropdown -->
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {% if request.path == '/noutati/' %}active{% endif %}" href="#" id="proiecteDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Proiecte/Activități
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="{% url 'noutati' %}" class="dropdown-item">Noutati</a></li>
+                        <li><a href="{% url 'noutati' %}" class="dropdown-item">Noutăți</a></li>
                         <li><a class="dropdown-item" href="{% url 'proiecte' %}">Proiecte</a></li>
                         <li><a class="dropdown-item" href="{% url 'activitati' %}">Activități</a></li>
+                    </ul>
+                </div>
+
+                <!-- Organizare Dropdown with Submenu -->
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="organizareDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Organizare
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-wide" aria-labelledby="organizareDropdown">
+                        <div class="row px-3 py-2">
+                            <!-- Cereri Tip Column -->
+                            <div class="col-4 dropdown-column-with-border">
+                                <h6 class="dropdown-header">Management</h6>
+                                <hr class="mt-n1 mr-n2 mb-n1">
+                                <a class="dropdown-item" href="#">Hotărâri</a>
+                                <a class="dropdown-item" href="#">Echipa manageriala</a>
+                            </div>
+                            
+                            <!-- Documente Column -->
+                            <div class="col-4 dropdown-column-with-border">
+                                <h6 class="dropdown-header">Secretariat</h6>
+                                <hr class="mt-n1 mr-n2 mb-n1 ml-n1">
+                                <a class="dropdown-item" href="#">Documente publice</a>
+                                <a class="dropdown-item" href="#">Burse școlare</a>
+                                <a href="#" class="dropdown-item">Cereri-tip</a>
+                            </div>
+                            
+                            <!-- Alte Resurse Column -->
+                            <div class="col-4">
+                                <h6 class="dropdown-header">Personal</h6>
+                                <hr class="mt-n1 mr-n2 mb-n1 ml-n1">
+                                <a class="dropdown-item" href="#">Personal didactic</a>
+                                <a class="dropdown-item" href="#">Personal nedidactic</a>
+                                <a href="#" class="dropdown-item">Personal auxiliar</a>
+                            </div>
+                        </div>
                     </ul>
                 </div>
 
@@ -75,6 +119,7 @@
             </div>
         </div>
     </nav>
+
 
 
     <!-- Mobile Navbar -->
@@ -126,6 +171,66 @@
                 <i class="bi bi-book"></i>
                 <span>Admitere</span>
             </a>
+            
+            <!-- Organizare Dropdown -->
+            <div class="nav-dropdown">
+                <a class="nav-link dropdown-toggle" href="#" onclick="toggleDropdown(event)">
+                    <i class="bi bi-diagram-3"></i>
+                    <span>Organizare</span>
+                    <i class="bi bi-chevron-down dropdown-arrow"></i>
+                </a>
+                <div class="dropdown-content">
+                    <!-- Secretariat -->
+                    <div class="nav-subdropdown">
+                        <a href="#" class="dropdown-toggle" onclick="toggleSubDropdown(event)">
+                            <i class="bi bi-building"></i>
+                            <span>Secretariat</span>
+                            <i class="bi bi-chevron-down dropdown-arrow"></i>
+                        </a>
+                        <div class="subdropdown-content">
+                            <a href="" onclick="closeMobileMenu()">
+                                <i class="bi bi-file-earmark-text"></i>
+                                <span>Informații Secretariat</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Personal -->
+                    <div class="nav-subdropdown">
+                        <a href="#" class="dropdown-toggle" onclick="toggleSubDropdown(event)">
+                            <i class="bi bi-people"></i>
+                            <span>Personal</span>
+                            <i class="bi bi-chevron-down dropdown-arrow"></i>
+                        </a>
+                        <div class="subdropdown-content">
+                            <a href="" onclick="closeMobileMenu()">
+                                <i class="bi bi-mortarboard"></i>
+                                <span>Didactic</span>
+                            </a>
+                            <a href="" onclick="closeMobileMenu()">
+                                <i class="bi bi-person-workspace"></i>
+                                <span>Nedidactic</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Consiliu Scolar -->
+                    <div class="nav-subdropdown">
+                        <a href="#" class="dropdown-toggle" onclick="toggleSubDropdown(event)">
+                            <i class="bi bi-bank"></i>
+                            <span>Consiliu Scolar</span>
+                            <i class="bi bi-chevron-down dropdown-arrow"></i>
+                        </a>
+                        <div class="subdropdown-content">
+                            <a href="" onclick="closeMobileMenu()">
+                                <i class="bi bi-list-check"></i>
+                                <span>Membri Consiliu</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <div class="nav-dropdown">
                 <a class="nav-link dropdown-toggle {% if request.path == '/noutati/' %} active {% endif %}" href="#" onclick="toggleDropdown(event)">
                     <i class="bi bi-lightbulb"></i>
@@ -176,7 +281,7 @@
             <p class="footer-text">Strada Castanilor 25,Turnu Măgurele 145200</p>
             <div class="footer-dev">
                 <i class="bi bi-code-slash"></i>
-                <span>Powered by</span>
+                <span>Designed and Made by</span>
                 <strong>Dorcea Matei</strong>
             </div>
         </div>
@@ -265,7 +370,7 @@
 
             <!-- Copyright -->
             <div>
-                <small>&copy; 1889 - {% now "Y" %} Colegiul National 'Unirea' Turnu Magurele. All rights reserved. | Powered by: <a href='https://github.com/Matttei' class="text-decoration-none" target="_blank" style="color: #f7c200; font-weight: bold; font-size:16px;">Dorcea Matei <i class="bi bi-code-slash"></i></a></small>
+                <small>&copy; 1889 - {% now "Y" %} Colegiul National 'Unirea' Turnu Magurele. All rights reserved. | Designed and Made by: <a href='https://github.com/Matttei' class="text-decoration-none" target="_blank" style="color: #f7c200; font-weight: bold; font-size:16px;">Dorcea Matei <i class="bi bi-code-slash"></i></a></small>
             </div>
         </div>
     </footer>
@@ -301,29 +406,61 @@
             overlay.classList.remove('active');
             body.classList.remove('mobile-menu-open');
             
-            // Close any open dropdowns
+            // Close all dropdowns and subdropdowns
             const dropdowns = document.querySelectorAll('.nav-dropdown');
+            const subdropdowns = document.querySelectorAll('.nav-subdropdown');
+            
             dropdowns.forEach(dropdown => {
                 dropdown.classList.remove('active');
             });
-        }
-
+            
+            subdropdowns.forEach(subdropdown => {
+                subdropdown.classList.remove('active');
+            });
+        }   
         // Dropdown toggle function
         function toggleDropdown(event) {
             event.preventDefault();
-            const dropdown = event.target.closest('.nav-dropdown');
-            const isActive = dropdown.classList.contains('active');
+            event.stopPropagation();
             
-            // Close all dropdowns first
+            const clickedDropdown = event.target.closest('.nav-dropdown');
+            const isCurrentlyActive = clickedDropdown.classList.contains('active');
+
+            // Close all main dropdowns first
             const allDropdowns = document.querySelectorAll('.nav-dropdown');
-            allDropdowns.forEach(d => d.classList.remove('active'));
-            
-            // Toggle the clicked dropdown
-            if (!isActive) {
-                dropdown.classList.add('active');
+            allDropdowns.forEach(d => {
+                d.classList.remove('active');
+                // Also close all subdropdowns when closing main dropdown
+                const subdropdowns = d.querySelectorAll('.nav-subdropdown');
+                subdropdowns.forEach(sub => sub.classList.remove('active'));
+            });
+
+            // If it wasn't active before, open it now
+            if (!isCurrentlyActive) {
+                clickedDropdown.classList.add('active');
             }
         }
-
+        function toggleSubDropdown(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        
+        const clickedSubdropdown = event.target.closest('.nav-subdropdown');
+        const isCurrentlyActive = clickedSubdropdown.classList.contains('active');
+        
+        // Find the parent dropdown
+        const parentDropdown = clickedSubdropdown.closest('.nav-dropdown');
+        
+        // Close all subdropdowns within the same parent dropdown
+        const siblingSubdropdowns = parentDropdown.querySelectorAll('.nav-subdropdown');
+        siblingSubdropdowns.forEach(sub => {
+            sub.classList.remove('active');
+        });
+        
+        // If it wasn't active before, open it now
+        if (!isCurrentlyActive) {
+            clickedSubdropdown.classList.add('active');
+        }
+        }
         // Close mobile menu when clicking outside
         document.addEventListener('click', function(event) {
             const menu = document.getElementById('mobileMenu');
@@ -334,11 +471,22 @@
             }
         });
 
+
         // Close mobile menu on window resize if it's open
         window.addEventListener('resize', function() {
             if (window.innerWidth > 991.98) {
                 closeMobileMenu();
             }
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownLinks = document.querySelectorAll('.nav-dropdown .dropdown-toggle, .nav-subdropdown .dropdown-toggle');
+            
+            dropdownLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                });
+            });
         });
     </script>
     <script src="{% static 'cnu/index.js' %}"></script>

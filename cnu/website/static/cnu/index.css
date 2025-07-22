@@ -1436,7 +1436,8 @@ li{
 }
 
 .mobile-menu-toggler {
-    display: none;
+    position: relative;
+    display: inline-block;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border: none;
     border-radius: 8px;
@@ -1446,12 +1447,35 @@ li{
     color: white;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.mobile-menu-toggler::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.mobile-menu-toggler:hover::before {
+    opacity: 1;
 }
 
 .mobile-menu-toggler:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+/* Ensure the icon stays above the pseudo-element */
+.mobile-menu-toggler i {
+    position: relative;
+    z-index: 2;
 }
 
 .mobile-menu-toggler:active {
@@ -1468,7 +1492,7 @@ li{
     display: none;
 }
 
-@media (max-width: 991.98px) {
+@media (max-width: 1200px) {
     .desktop-navbar {
         display: none;
     }
@@ -1714,4 +1738,53 @@ body.mobile-menu-open {
 
 .highlight-animation {
     animation: highlightFade 1.5s ease-in-out;
+}
+.dropdown-menu-wide {
+    width: 600px;
+    max-width: calc(100vw - 40px); /* Prevent overflow */
+}
+
+/* Adjust positioning to prevent right-side overflow */
+@media (min-width: 1200px) {
+    .dropdown-menu-wide {
+        /* For larger screens, shift slightly left */
+        transform: translateX(-63%) !important;
+    }
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+    .dropdown-menu-wide {
+        /* For medium screens, shift more to prevent overflow */
+        transform: translateX(-80%) !important;
+    }
+}
+
+@media (max-width: 991px) {
+    .dropdown-menu-wide {
+        width: calc(100vw - 40px);
+        max-width: 500px;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .dropdown-menu-wide {
+        width: calc(100vw - 30px);
+        max-width: 400px;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .dropdown-menu-wide {
+        width: calc(100vw - 20px);
+        left: 10px !important;
+        right: 10px !important;
+        transform: none !important;
+    }
+}
+.dropdown-column-with-border {
+    border-right: 1px solid #ccc;
 }

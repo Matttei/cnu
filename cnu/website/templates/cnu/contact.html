@@ -13,7 +13,7 @@
         <!-- Contact Form -->
         <div class="col-md-6 col-12">
             <div class="p-4 shadow-sm rounded bg-light h-100" style="min-height: 500px;">
-                <form method="post" action="{% url 'contact_form' %}">
+                <form method="post" action="{% url 'contact_form' %}" class="contact-form">
                     {% csrf_token %}
                     <div class="mb-3">
                         <label for="name" class="form-label">Nume</label>

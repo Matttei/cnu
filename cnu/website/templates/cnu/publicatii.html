@@ -32,8 +32,8 @@
                     </div>
                     <hr style="color: black;">
                     <h3 class="news-title">{{new.titlu}}</h3>
-                    <p class="news-description">{{ new.continut|safe }}</p>
-                    <a href="#" class="read-more-btn">Citește mai mult</a>
+                    <p class="news-description">{{ new.continut|safe|truncatewords:20 }}</p>
+                    <a href="{% url 'publicatie' new.id%}" class="read-more-btn">Citește mai mult</a>
                  </div>
             </article>
         </div>
