@@ -58,14 +58,14 @@
                         Examene
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="exameneDropdown">
-                        <li><a href="#" class="dropdown-item">Bacalaureat</a></li>
-                        <li><a href="#" class="dropdown-item">Admitere</a></li>
+                        <li><a href="{% url 'bacalaureat' %}" class="dropdown-item">Bacalaureat</a></li>
+                        <li><a href="{% url 'admitere' %}" class="dropdown-item">Admitere</a></li>
                     </ul>
                 </div>
 
                 <!-- Proiecte/Activități Dropdown -->
                 <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle {% if request.path == '/noutati/' %}active{% endif %}" href="#" id="proiecteDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle {% if request.path == '/noutati/' %}active{% endif %}" href="{% url 'publicatii' %}" id="proiecteDropdown">
                         Proiecte/Activități
                     </a>
                     <ul class="dropdown-menu">
@@ -167,11 +167,23 @@
                 <i class="bi bi-info-circle"></i>
                 <span>Despre</span>
             </a>
-            <a class="nav-link {% if request.path == '/admitere/' %}active{% endif %}" href="{% url 'admitere' %}" onclick="closeMobileMenu()">
-                <i class="bi bi-book"></i>
-                <span>Admitere</span>
-            </a>
-            
+            <nav class="nav-dropdown">
+                <a href="#" class="nav-link dropdown-toggle" onclick="toggleDropdown(event)">
+                    <i class="bi bi-journal-text"></i>
+                    <span>Examene</span>
+                    <i class="bi bi-chevron-down dropdown-arrow"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="{% url 'admitere' %}" onclick="closeMobileMenu()">
+                        <i class="bi bi-person-check"></i>
+                        <span>Admitere</span>
+                    </a>
+                    <a href="{% url 'bacalaureat' %}" onclick="closeMobileMenu()">
+                        <i class="bi bi-file-earmark-bar-graph"></i>
+                        <span>Bacalaureat</span>
+                    </a>
+                </div>
+            </nav>
             <!-- Organizare Dropdown -->
             <div class="nav-dropdown">
                 <a class="nav-link dropdown-toggle" href="#" onclick="toggleDropdown(event)">
@@ -180,56 +192,59 @@
                     <i class="bi bi-chevron-down dropdown-arrow"></i>
                 </a>
                 <div class="dropdown-content">
+
+                    <!-- Management -->
+                    <div class="dropdown-group">
+                        <span class="dropdown-group-title">&#x21AA; <i class="bi bi-clipboard-check me-1"></i> Management</span>
+                        <a href="#" onclick="closeMobileMenu()">
+                            <i class="bi bi-journal-check"></i>
+                            <span>Hotărâri</span>
+                        </a>
+                        <a href="#" onclick="closeMobileMenu()">
+                            <i class="bi bi-people-fill"></i>
+                            <span>Echipa managerială</span>
+                        </a>
+                        <hr>
+                    </div>
+
                     <!-- Secretariat -->
-                    <div class="nav-subdropdown">
-                        <a href="#" class="dropdown-toggle" onclick="toggleSubDropdown(event)">
-                            <i class="bi bi-building"></i>
-                            <span>Secretariat</span>
-                            <i class="bi bi-chevron-down dropdown-arrow"></i>
+                    <div class="dropdown-group">
+                        <span class="dropdown-group-title">&#x21AA; <i class="bi bi-building me-1"></i> Secretariat</span>
+                        <a href="#" onclick="closeMobileMenu()">
+                            <i class="bi bi-folder-symlink"></i>
+                            <span>Documente publice</span>
                         </a>
-                        <div class="subdropdown-content">
-                            <a href="" onclick="closeMobileMenu()">
-                                <i class="bi bi-file-earmark-text"></i>
-                                <span>Informații Secretariat</span>
-                            </a>
-                        </div>
+                        <a href="#" onclick="closeMobileMenu()">
+                            <i class="bi bi-cash-stack"></i>
+                            <span>Burse școlare</span>
+                        </a>
+                        <a href="#" onclick="closeMobileMenu()">
+                            <i class="bi bi-file-earmark-text"></i>
+                            <span>Cereri-tip</span>
+                        </a>
+                        <hr>
                     </div>
-                    
+
                     <!-- Personal -->
-                    <div class="nav-subdropdown">
-                        <a href="#" class="dropdown-toggle" onclick="toggleSubDropdown(event)">
-                            <i class="bi bi-people"></i>
-                            <span>Personal</span>
-                            <i class="bi bi-chevron-down dropdown-arrow"></i>
+                    <div class="dropdown-group">
+                        <span class="dropdown-group-title">&#x21AA; <i class="bi bi-people me-1"></i> Personal</span>
+                        <a href="#" onclick="closeMobileMenu()">
+                            <i class="bi bi-mortarboard"></i>
+                            <span>Personal didactic</span>
                         </a>
-                        <div class="subdropdown-content">
-                            <a href="" onclick="closeMobileMenu()">
-                                <i class="bi bi-mortarboard"></i>
-                                <span>Didactic</span>
-                            </a>
-                            <a href="" onclick="closeMobileMenu()">
-                                <i class="bi bi-person-workspace"></i>
-                                <span>Nedidactic</span>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- Consiliu Scolar -->
-                    <div class="nav-subdropdown">
-                        <a href="#" class="dropdown-toggle" onclick="toggleSubDropdown(event)">
-                            <i class="bi bi-bank"></i>
-                            <span>Consiliu Scolar</span>
-                            <i class="bi bi-chevron-down dropdown-arrow"></i>
+                        <a href="#" onclick="closeMobileMenu()">
+                            <i class="bi bi-person-workspace"></i>
+                            <span>Personal nedidactic</span>
                         </a>
-                        <div class="subdropdown-content">
-                            <a href="" onclick="closeMobileMenu()">
-                                <i class="bi bi-list-check"></i>
-                                <span>Membri Consiliu</span>
-                            </a>
-                        </div>
+                        <a href="#" onclick="closeMobileMenu()">
+                            <i class="bi bi-person-lines-fill"></i>
+                            <span>Personal auxiliar</span>
+                        </a>
                     </div>
                 </div>
             </div>
+
+
             
             <div class="nav-dropdown">
                 <a class="nav-link dropdown-toggle {% if request.path == '/noutati/' %} active {% endif %}" href="#" onclick="toggleDropdown(event)">
@@ -281,7 +296,7 @@
             <p class="footer-text">Strada Castanilor 25,Turnu Măgurele 145200</p>
             <div class="footer-dev">
                 <i class="bi bi-code-slash"></i>
-                <span>Designed and Made by</span>
+                <span>Website Made by</span>
                 <strong>Dorcea Matei</strong>
             </div>
         </div>
@@ -370,7 +385,7 @@
 
             <!-- Copyright -->
             <div>
-                <small>&copy; 1889 - {% now "Y" %} Colegiul National 'Unirea' Turnu Magurele. All rights reserved. | Designed and Made by: <a href='https://github.com/Matttei' class="text-decoration-none" target="_blank" style="color: #f7c200; font-weight: bold; font-size:16px;">Dorcea Matei <i class="bi bi-code-slash"></i></a></small>
+                <small>&copy; 1889 - {% now "Y" %} Colegiul National 'Unirea' Turnu Magurele. All rights reserved. | Website Made by: <a href='https://github.com/Matttei' class="text-decoration-none" target="_blank" style="color: #f7c200; font-weight: bold; font-size:16px;">Dorcea Matei <i class="bi bi-code-slash"></i></a></small>
             </div>
         </div>
     </footer>

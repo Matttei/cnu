@@ -182,3 +182,7 @@ def publicatie(request, publicatie_id):
     return render(request, 'cnu/publicatie.html', {
         'publicatie': publicatie,
     })
+
+
+def bacalaureat(request):
+    return render(request, 'cnu/bacalaureat.html')
