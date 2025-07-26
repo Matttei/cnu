@@ -1886,7 +1886,7 @@ font-size: calc(1.5rem * var(--accessibility-font-scale)) !important;
 }
 .aux-grid{
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto auto !important;
 }
 .staff-card {
     background: white;
