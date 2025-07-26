@@ -37,7 +37,26 @@
             </article>
         </div>
         {% empty %}
+            <ul>
+                <li> Nu exista publicatii pentru aceasta categorie momentan! </li>
+            </ul>
         {% endfor %}
-        <!-- Page Header -->
+        <!-- Paginator -->
+        <div class="pagination-container">
+            {% if news.has_previous %}
+                <a href="?page={{ news.previous_page_number }}" class="pagination-btn">← Anterioară</a>
+            {% else %}
+                <span class="pagination-btn disabled">← Anterioară</span>
+            {% endif %}
+
+            <span class="pagination-info">Pagina {{ news.number }} din {{ news.paginator.num_pages }}</span>
+
+            {% if news.has_next %}
+                <a href="?page={{ news.next_page_number }}" class="pagination-btn">Următoare →</a>
+            {% else %}
+                <span class="pagination-btn disabled">Următoare →</span>
+            {% endif %}
+        </div>
+        <!-- Paginator End -->
     </div>
 {% endblock %}

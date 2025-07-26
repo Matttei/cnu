@@ -20,6 +20,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const messageEl = document.createElement('div');
         messageEl.className = 'message';
         messageEl.innerHTML = message;
+        const hideBtn = document.createElement('button');
+        hideBtn.innerHTML = 'X'
+        hideBtn.classList.add('btn', 'btn-hide', 'ml-2');
+        messageEl.append(hideBtn);
 
         if (isSuccess) {
             messageEl.style.backgroundColor = '#d4edda';

@@ -19,6 +19,11 @@
     {% block script %}
     {% endblock %}
 </head>
+<!-- Dev -->
+<!-- Website Made by: Dorcea Matei -->
+<!-- Mail: mateidorcea@gmail.com -->
+<!-- Github: https://github.com/Matttei -->
+<!-- End Dev-->
 <body class="d-flex flex-column min-vh-100">
     <!-- Loading Overlay -->
     <div class="loading-overlay" id="loadingOverlay">
@@ -103,9 +108,9 @@
                             <div class="col-4">
                                 <h6 class="dropdown-header">Personal</h6>
                                 <hr class="mt-n1 mr-n2 mb-n1 ml-n1">
-                                <a class="dropdown-item" href="#">Personal didactic</a>
+                                <a class="dropdown-item" href="{% url 'personal_didactic' %}">Personal didactic</a>
                                 <a class="dropdown-item" href="#">Personal nedidactic</a>
-                                <a href="#" class="dropdown-item">Personal auxiliar</a>
+                                <a href="{% url 'personal_auxiliar' %}" class="dropdown-item">Personal auxiliar</a>
                             </div>
                         </div>
                     </ul>
@@ -296,8 +301,8 @@
             <p class="footer-text">Strada Castanilor 25,Turnu Măgurele 145200</p>
             <div class="footer-dev">
                 <i class="bi bi-code-slash"></i>
-                <span>Website Made by</span>
-                <strong>Dorcea Matei</strong>
+                <span class="mr-2">Developed by</span>
+                <strong class="text-decoration-underline">Dorcea Matei</strong>
             </div>
         </div>
     </div>
@@ -363,6 +368,7 @@
             </div>
         </div>
     </div>
+    <!-- Widged End-->
 
     <!-- Body start-->
     {% block body %}
@@ -370,7 +376,7 @@
     <!-- Body end-->
 
     <!-- Footer -->
-    <footer class="bg-dark text-light text-center py-3 fixed-footer">
+    <footer class="text-light text-center py-3 fixed-footer bg-dark">
         <div class="container">
             <!-- Social icons -->
             <a href="https://www.facebook.com/unireaTurnuMagurele/?locale=ro_RO" target="_blank" class="text-light me-3 text-decoration-none">
@@ -385,10 +391,11 @@
 
             <!-- Copyright -->
             <div>
-                <small>&copy; 1889 - {% now "Y" %} Colegiul National 'Unirea' Turnu Magurele. All rights reserved. | Website Made by: <a href='https://github.com/Matttei' class="text-decoration-none" target="_blank" style="color: #f7c200; font-weight: bold; font-size:16px;">Dorcea Matei <i class="bi bi-code-slash"></i></a></small>
+                <small>&copy; 1889 - {% now "Y" %} Colegiul National 'Unirea' Turnu Magurele.| Designed & Organized by: <a href='https://github.com/Matttei' class="text-decoration-none" target="_blank" style="color: #f7c200; font-weight: bold; font-size:16px;">Dorcea Matei <i class="bi bi-code-slash"></i></a></small>
             </div>
         </div>
     </footer>
+    <!-- End Footer -->
 
     <!-- Scripts -->
     <script>

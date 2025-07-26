@@ -6,6 +6,7 @@ from datetime import timedelta
 from django.http import JsonResponse
 from django.urls import reverse
 from django.shortcuts import redirect
+from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.exceptions import ValidationError
@@ -122,8 +123,11 @@ def admin_cnu(request):
 def publicatii(request):
     # For now the news will be only the annouces 
     all_news = Anunt.objects.all().order_by('-data_publicare')
+    p = Paginator(all_news, 9)
+    page_number = int(request.GET.get('page', 1))
+    page_obj = p.get_page(page_number)
     return render(request, 'cnu/publicatii.html', {
-        'news': all_news,
+        'news': page_obj,
     })
 
 def noutati(request):
@@ -186,3 +190,28 @@ def publicatie(request, publicatie_id):
 
 def bacalaureat(request):
     return render(request, 'cnu/bacalaureat.html')
+
+
+def personal_didactic(request):
+    categories = [
+        ('Limba și literatura română', ['Prof. Mariana Adelina ELS', 'Prof. Mariana Adelina ELS', 'Prof. Elena ȘERBĂNESCU', 'Prof. Monica CRISTEA']),
+        ('Limba engleză', ['Prof. Crina Ionela DORCEA', 'Prof. Daniela Sonia PLOCON', 'Prof. Răzvan Delcea VASILE']),
+        ('Limba franceză', ['Prof. Andreea Cristina BĂLAȘA', 'Prof. Mircea TATARICI', 'Prof. Geanina Petruța SAVA']),
+        ('Matematică', ['Prof. Florin ORIȚĂ', 'Prof. Irina PETREANU', 'Prof. Mariana TUDOR', 'Prof. Rodica Argentina IONESCU']),
+        ('Fizică', ['Prof. Mihai CĂLIN', 'Prof. Marinela DIEACONU']),
+        ('Chimie', ['Prof. Ioan Fernand CARAGEA', 'Prof. Nicoleta Claudia DRĂGULEASA']),
+        ('Biologie', ['Prof. Daniela GRASU', 'Prof. Mihaela NEACȘU']),
+        ('Istorie', ['Prof. Vasile MĂRCUȘU', 'Prof. Ștefănel VIPIE', 'Prof. Ramona Elena STĂNESCU']),
+        ('Geografie', ['Prof. Violeta DIMA', 'Prof. Daniela Rodica VASILE']),
+        ('Științe socio-umane', ['Prof. Nicolae Alin ALEXE', 'Consilier Georgeta FUNARU']),
+        ('Educație vizuală', ['Prof. Ovidiu Nicolae ORBEȘTEANU']),
+        ('Educație fizică și sport', ['Prof. Mădălin BARBU']),
+        ('Informatică și TIC', ['Prof. Miruna GRUIA', 'Prof. Nicoleta MARINESCU', 'Prof. Gabriel DEFTA']),
+        ('Religie', ['Prof. Constantin COJOACĂ', 'Prof. Constantin COJOACĂ']),
+    ]
+    return render(request, 'cnu/personal_didactic.html', {
+        'categories': categories,
+    })
+
+def personal_auxiliar(request):
+    return render(request, 'cnu/personal_auxiliar.html')
