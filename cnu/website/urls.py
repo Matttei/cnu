@@ -17,5 +17,5 @@ urlpatterns = [
     path('publicatii/<int:publicatie_id>/', views.publicatie, name='publicatie'),
     path('bacalaureat/', views.bacalaureat, name='bacalaureat'),
     path('personal_didactic/', views.personal_didactic, name='personal_didactic'),
-    path('personal_auxiliar', views.personal_auxiliar, name='personal_auxiliar')
+    path('personal_auxiliar/', views.personal_auxiliar, name='personal_auxiliar')
 ]

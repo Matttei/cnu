@@ -194,7 +194,7 @@ def bacalaureat(request):
 
 def personal_didactic(request):
     categories = [
-        ('Limba și literatura română', ['Prof. Mariana Adelina ELS', 'Prof. Mariana Adelina ELS', 'Prof. Elena ȘERBĂNESCU', 'Prof. Monica CRISTEA']),
+        ('Limba și literatura română', ['Prof. Mariana Adelina ELS', 'Prof. Elena Daniela NICA', 'Prof. Elena ȘERBĂNESCU', 'Prof. Monica CRISTEA']),
         ('Limba engleză', ['Prof. Crina Ionela DORCEA', 'Prof. Daniela Sonia PLOCON', 'Prof. Răzvan Delcea VASILE']),
         ('Limba franceză', ['Prof. Andreea Cristina BĂLAȘA', 'Prof. Mircea TATARICI', 'Prof. Geanina Petruța SAVA']),
         ('Matematică', ['Prof. Florin ORIȚĂ', 'Prof. Irina PETREANU', 'Prof. Mariana TUDOR', 'Prof. Rodica Argentina IONESCU']),
