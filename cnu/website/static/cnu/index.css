@@ -1831,13 +1831,29 @@ body.mobile-menu-open {
     font-weight: 500;
     color: #333;
 }
-.btn-hide{
+.btn-hide {
+    position: absolute;
+    right: 0;
+    opacity: 0;
+    top: 0;
+    width: 100%;
+    backdrop-filter: blur(2px);
+    bottom: 0;
     background: transparent;
     box-shadow: -5px 0 25px rgba(0, 0, 0, 0.3);
-    padding: 0 4px;
-    left: 0;
+    padding: 0 8px;
+    height: 100%; 
+    transition: all 0.3s ease-in-out;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
 }
-
+.message:hover{
+    .btn-hide{
+        opacity: 1;
+    }
+}
 /* Personal */
 
 

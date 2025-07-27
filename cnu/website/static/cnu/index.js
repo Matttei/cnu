@@ -16,13 +16,30 @@ document.addEventListener('DOMContentLoaded', function () {
     // ----------------------------
 
     // Utility function to show messages
+    let messageCount = 0;
+
     function showMessage(message, isSuccess = false) {
         const messageEl = document.createElement('div');
         messageEl.className = 'message';
+
+        // Assign a unique ID
+        const id = `message-${messageCount++}`;
+        messageEl.id = id;
+
         messageEl.innerHTML = message;
+
         const hideBtn = document.createElement('button');
-        hideBtn.innerHTML = 'X'
+        hideBtn.innerHTML = 'X';
         hideBtn.classList.add('btn', 'btn-hide', 'ml-2');
+        
+        // Set the ID on the button
+        hideBtn.setAttribute('data-target-id', id);
+        hideBtn.addEventListener('click', function () {
+            const targetId = this.getAttribute('data-target-id');
+            const targetEl = document.getElementById(targetId);
+            if (targetEl) targetEl.remove();
+        });
+
         messageEl.append(hideBtn);
 
         if (isSuccess) {
@@ -33,9 +50,11 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.appendChild(messageEl);
 
         setTimeout(() => {
-            messageEl.remove();
+            const targetEl = document.getElementById(id);
+            if (targetEl) targetEl.remove();
         }, 3000);
     }
+
     const params = new URLSearchParams(window.location.search);
     if (params.get('success') === '1') {
         showMessage('✅ Anunțul a fost publicat cu succes!', true);
