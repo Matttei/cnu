@@ -2307,10 +2307,7 @@ font-size: calc(1.5rem * var(--accessibility-font-scale)) !important;
     color: #8b4513;
 }
 
-.secondary-session .phase-digital {
-    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-    color: #0d4f3c;
-}
+
 
 .secondary-session .phase-written {
     background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
