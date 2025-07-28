@@ -1,15 +1,270 @@
 {% extends 'cnu/layout.html' %}
 {% load static %}
+
 {% block title %}
     Bacalaureat
 {% endblock %}
+
 {% block body %}
-    <div class="layout-container">
-        <div class="page-header">
-            <div class="container">
-                <h1 class="page-title">Bacalaureat</h1>
-            </div>
+<link rel="stylesheet" href="{% static 'css/bacalaureat.css' %}">
+
+<div class="layout-container">
+    <div class="page-header bg-primary text-white py-5 mb-4">
+        <div class="container">
+            <h1 class="page-title">Bacalaureat</h1>
         </div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita, numquam amet repellendus asperiores illo nam nesciunt obcaecati tenetur ex labore distinctio nobis, quod maiores dignissimos quidem eum quam ipsum nostrum!</p>
     </div>
+
+    <div class="container">
+        <h1 class="text-center mb-4">Examenul de Bacalaureat,<br>an școlar 2024–2025</h1>
+
+        <hr class="mb-4">
+        <!-- 🔔 Secțiune importantă -->
+        <div class="alert-important">
+            <strong>🔔 Important:</strong> Ordinul nr.	6481/2024	privind	organizarea	şi	desfăşurarea	examenului
+            <a href="{% static 'bac/Ordin_bac_2025.pdf'%}" download target="_blank">naţional	de	bacalaureat	</a>- 2025
+        </div>
+        <!-- Calendar Section - Sesiunea Iunie -->
+        <section class="calendar-section">
+            <h2 class="text-center section-title">Calendarul examenului național de bacalaureat – 2025</h2>
+            <p class="text-center session-subtitle">Sesiunea iunie 2025</p>
+
+            <div class="table-responsive">
+                <table class="table calendar-table align-middle text-center">
+                    <thead>
+                        <tr>
+                            <th style="width: 30%;">Perioada</th>
+                            <th style="width: 70%;">Activitate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="date-cell">16–20 decembrie 2024</td>
+                            <td class="activity-cell">
+                                <div class="exam-phase phase-admin">Înscriere</div>
+                                Înscrierea candidaților pentru susținerea probelor A, B, C, D
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="date-cell">27–29 ianuarie 2025</td>
+                            <td class="activity-cell">
+                                <div class="exam-phase phase-oral">Proba A</div>
+                                Evaluarea competențelor lingvistice de comunicare orală în limba română
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="date-cell">29–31 ianuarie 2025</td>
+                            <td class="activity-cell">
+                                <div class="exam-phase phase-oral">Proba B</div>
+                                Evaluarea competențelor lingvistice de comunicare orală în limba maternă
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="date-cell">3–5 februarie 2025</td>
+                            <td class="activity-cell">
+                                <div class="exam-phase phase-oral">Proba C</div>
+                                Evaluarea competențelor lingvistice într-o limbă de circulație internațională
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="date-cell">5–7 februarie 2025</td>
+                            <td class="activity-cell">
+                                <div class="exam-phase phase-digital">Proba D</div>
+                                Evaluarea competențelor digitale
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="date-cell">30 mai – 4 iunie 2025</td>
+                            <td class="activity-cell">
+                                <div class="exam-phase phase-admin">Cerințe speciale</div>
+                                Susținerea probelor A, B, C, D pentru elevii cu cerințe speciale
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="date-cell">2–6 iunie 2025</td>
+                            <td class="activity-cell">
+                                <div class="exam-phase phase-admin">Înscriere</div>
+                                Înscrierea la probele scrise – sesiunea I
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="date-cell">6 iunie 2025</td>
+                            <td class="activity-cell">
+                                <div class="exam-phase phase-admin">Închidere cursuri</div>
+                                Încheierea cursurilor pentru clasa a XII-a/a XIII-a
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="date-cell">10 iunie 2025</td>
+                            <td class="activity-cell">
+                                <div class="exam-phase phase-written">Proba 1</div>
+                                Limba și literatura română
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="date-cell">11 iunie 2025</td>
+                            <td class="activity-cell">
+                                <div class="exam-phase phase-written">Proba 2</div>
+                                Proba obligatorie a profilului
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="date-cell">13 iunie 2025</td>
+                            <td class="activity-cell">
+                                <div class="exam-phase phase-written">Proba 3</div>
+                                Proba la alegere a profilului și specializării
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="date-cell">16 iunie 2025</td>
+                            <td class="activity-cell">
+                                <div class="exam-phase phase-written">Proba 4</div>
+                                Limba și literatura maternă
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="date-cell">20 iunie 2025</td>
+                            <td class="activity-cell">
+                                <div class="exam-phase phase-admin">Rezultate</div>
+                                Afișarea rezultatelor și depunerea contestațiilor
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="date-cell">23–24 iunie 2025</td>
+                            <td class="activity-cell">
+                                <div class="exam-phase phase-admin">Contestații</div>
+                                Vizualizarea lucrărilor scrise și depunerea contestațiilor
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="date-cell">30 iunie 2025</td>
+                            <td class="activity-cell">
+                                <div class="exam-phase phase-admin">Rezultate finale</div>
+                                Afișarea rezultatelor finale
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Divider -->
+        <hr class="session-divider">
+
+        <!-- Calendar Section - Sesiunea Iulie-August -->
+        <section class="calendar-section secondary-session">
+            <h2 class="text-center section-title">Calendarul examenului național de bacalaureat – 2025</h2>
+            <p class="text-center session-subtitle">Sesiunea iulie-august 2025</p>
+
+            <div class="table-responsive">
+                <table class="table calendar-table align-middle text-center">
+                    <thead>
+                        <tr>
+                            <th style="width: 30%;">Perioada</th>
+                            <th style="width: 70%;">Activitate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="date-cell">14-21 iulie 2025</td>
+                            <td class="activity-cell">
+                                <div class="exam-phase phase-admin">Înscriere</div>
+                                Înscrierea candidaților la a doua sesiune de examen, inclusiv a candidaților care au promovat examenele de corigență
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="date-cell">4-5 august 2025</td>
+                            <td class="activity-cell">
+                                <div class="exam-phase phase-oral">Proba A</div>
+                                Evaluarea competențelor lingvistice de comunicare orală în limba română
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="date-cell">5 august 2025</td>
+                            <td class="activity-cell">
+                                <div class="exam-phase phase-oral">Proba B</div>
+                                Evaluarea competențelor lingvistice de comunicare orală în limba maternă
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="date-cell">6 august 2025</td>
+                            <td class="activity-cell">
+                                <div class="exam-phase phase-digital">Proba D</div>
+                                Evaluarea competențelor digitale
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="date-cell">7-8 august 2025</td>
+                            <td class="activity-cell">
+                                <div class="exam-phase phase-oral">Proba C</div>
+                                Evaluarea competențelor lingvistice într-o limbă de circulație internațională
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="date-cell">11 august 2025</td>
+                            <td class="activity-cell">
+                                <div class="exam-phase phase-written">Proba 1</div>
+                                Limba și literatura română - probă scrisă
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="date-cell">12 august 2025</td>
+                            <td class="activity-cell">
+                                <div class="exam-phase phase-written">Proba 2</div>
+                                Proba obligatorie a profilului - probă scrisă
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="date-cell">13 august 2025</td>
+                            <td class="activity-cell">
+                                <div class="exam-phase phase-written">Proba 3</div>
+                                Proba la alegere a profilului și specializării - probă scrisă
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="date-cell">14 august 2025</td>
+                            <td class="activity-cell">
+                                <div class="exam-phase phase-written">Proba 4</div>
+                                Limba și literatura maternă - probă scrisă
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="date-cell">18 august 2025</td>
+                            <td class="activity-cell">
+                                <div class="exam-phase phase-admin">Rezultate</div>
+                                Afișarea rezultatelor la probele scrise (până la ora 12.00); vizualizarea lucrărilor scrise și depunerea contestațiilor (în intervalul orar 14.00-18.00)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="date-cell">19-20 august 2025</td>
+                            <td class="activity-cell">
+                                <div class="exam-phase phase-admin">Contestații</div>
+                                Vizualizarea lucrărilor scrise și depunerea contestațiilor
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="date-cell">26 august 2025</td>
+                            <td class="activity-cell">
+                                <div class="exam-phase phase-admin">Rezultate finale</div>
+                                Afișarea rezultatelor finale
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <h6 class="ml-4">NOTA: <br>
+        La solicitarea comisiilor de bacalaureat judeţene/Comisiei de bacalaureat a municipiului Bucureşti sau 
+        din proprie iniţiativă, Comisia Naţională de Bacalaureat poate aproba, în situaţii justificate şi dovedite, 
+        înscrierea candidaţilor în afara perioadei prevăzute, precum şi prelungirea perioadelor de susţinere a 
+        probelor de evaluare a competenţelor lingvistice sau digitale, de evaluare/reevaluare a lucrărilor 
+        scrise ori de afişare a rezultatelor şi reducerea perioadei de afişare a rezultatelor.
+        </h6>
+        <section class="ordin-info">
+            <ul>
+                <li>📄 <a href="{% static 'bac/anexa_bac.pdf' %}" download target="_blank">Descarcă Calendarul complet (PDF)</a></li>
+            </ul>
+        </section>
+    </div>
+</div>
 {% endblock %}

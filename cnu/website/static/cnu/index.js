@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
             targetElement.classList.add('highlight-animation');
         }
     }
-
+    
     const contactForm = document.querySelector('.contact-form');
     const feedback = document.querySelector('.form-feedback'); 
     if (contactForm){

@@ -4,12 +4,33 @@
     Admitere
 {% endblock %}
 {% block body %}
-    <div class="layout-container">
-        <div class="page-header">
-            <div class="container">
-                <h1 class="page-title">Admitere</h1>
-            </div>
+<div class="layout-container">
+    <div class="page-header">
+        <div class="container">
+            <h1 class="page-title">Admitere</h1>
         </div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita, numquam amet repellendus asperiores illo nam nesciunt obcaecati tenetur ex labore distinctio nobis, quod maiores dignissimos quidem eum quam ipsum nostrum!</p>
     </div>
+
+    <div class="container">
+        <h1 class="text-center">Admiterea în învățământul liceal,<br>an școlar 2025–2026</h1>
+
+        <!-- 🔔 Secțiune importantă -->
+        <div class="alert-important">
+            <strong>🔔 Important:</strong> Pe site-ul oficial al Ministerului Educației, la adresa 
+            <a href="http://admitere.edu.ro/" target="_blank">admitere.edu.ro</a>, au fost publicate rezultatele repartizării computerizate pentru anul școlar 2025–2026.
+        </div>
+
+        <!-- 📜 Ordin și procedură -->
+        <section class="ordin-info">
+            <h2>Ordinul nr. 6480/2024 – Admiterea în liceu 2025–2026</h2>
+            <ul>
+                <li>📅 A fost aprobat <strong>calendarul oficial</strong> de admitere pentru toți elevii din clasa a VIII-a.</li>
+                <li>📚 Procedura respectă <strong>Metodologia din Ordinul 4802/2010</strong> și completările aduse de prezentul ordin.</li>
+                <li>⚖️ Criterii de departajare: media claselor V–VIII, nota la Limba română, apoi la Matematică.</li>
+                <li>🌍 Se alocă <strong>locuri speciale</strong> pentru candidați romi și cu CES (cerințe educaționale speciale).</li>
+                <li>📄 <a href="{% static 'admitere/ordin_admitere.pdf' %}" download target="_blank">Descarcă Ordinul complet (PDF)</a></li>
+            </ul>
+        </section>
+    </div>
+</div>
 {% endblock %}
