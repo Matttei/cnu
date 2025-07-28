@@ -2173,6 +2173,24 @@ font-size: calc(1.5rem * var(--accessibility-font-scale)) !important;
 .calendar-table tr:nth-child(15) { animation-delay: 1.5s; }
 /* Bacalaureat Calendar Styles */
 
+.card-grid {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.card-grid.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card-grid.animate:nth-child(1) { transition-delay: 0.1s; }
+.card-grid.animate:nth-child(2) { transition-delay: 0.2s; }
+.card-grid.animate:nth-child(3) { transition-delay: 0.3s; }
+.card-grid.animate:nth-child(4) { transition-delay: 0.4s; }
+
+
+
 .calendar-table {
     border-radius: 12px;
     overflow: hidden;
@@ -2341,3 +2359,47 @@ font-size: calc(1.5rem * var(--accessibility-font-scale)) !important;
         margin: 3rem auto;
     }
 }
+
+.smiley-face,
+.smiley-face2 {
+    position: absolute;
+    opacity: 0;
+    width: 50px;
+    height: 50px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    top: 0;
+}
+
+.smiley-face {
+    left: 0;
+}
+
+.smiley-face2 {
+    right: 0;
+}
+
+.smiley-face:hover,
+.smiley-face2:hover {
+    transform: scale(1.05) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.value-item {
+  opacity: 0;
+  transform: translateY(-200px);
+}
+
+.value-item.animate {
+  animation: tragere 0.6s ease forwards;
+}
+.smiley-face.animate{
+    opacity: 1;
+    animation: spin 2s ease forwards;
+}
+.smiley-face2.animate{
+    opacity: 1;
+    animation: spin 2s ease forwards;
+}
+
+.value-item.animate:nth-child(1) { animation-delay: 0.1s; }
+.value-item.animate:nth-child(2) { animation-delay: 0.2s; }

@@ -70,6 +70,28 @@ document.addEventListener('DOMContentLoaded', function () {
             targetElement.classList.add('highlight-animation');
         }
     }
+    const cards = document.querySelectorAll(".card-grid");
+    const values = document.querySelectorAll(".value-item");
+    const smiley1 = document.querySelector('.smiley-face');
+    const smiley2 = document.querySelector('.smiley-face2');
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate");
+            observer.unobserve(entry.target); // Stop observing once it's animated
+          }
+        });
+      },
+      {
+        threshold: 0.2 // Trigger when 20% of the element is visible
+      }
+    );
+
+    cards.forEach(card => observer.observe(card));
+    values.forEach(value => observer.observe(value));
+    observer.observe(smiley1);
+    observer.observe(smiley2);
     
     const contactForm = document.querySelector('.contact-form');
     const feedback = document.querySelector('.form-feedback'); 
