@@ -10,101 +10,84 @@
     <div class="content">
         <h1 class="display-5 fw-bold">Colegiul Național „Unirea”</h1>
         <p class="lead mb-4">Excelență prin educație, tradiție și performanță</p>
-        <a href="{% url 'despre' %}" class="btn btn-warning btn-lg px-4">Află mai mult</a>
+        <a href="{% url 'despre' %}" class="btn btn-warning btn-lg px-4 more-btn">Află mai mult</a>
     </div>
 </section>
 
-<!-- ABOUT -->
-<section class="py-5 bg-light mb-5">
-  <div class="container">
-    <div class="row align-items-center g-4 g-lg-5">
-      <div class="col-lg-6 text-center">
-        <div class="position-relative d-inline-block">
-          <img src="{% static 'cnu/assets/placeholder.png' %}" alt="Sigla liceului" class="img-fluid rounded-circle shadow-sm border border-3" style="width: 180px; height: 180px; object-fit: cover;">
-          <div class="bg-primary opacity-10 rounded-circle position-absolute top-50 start-50 translate-middle" style="width: 240px; height: 240px; z-index: -1;"></div>
-        </div>
-      </div>
-
-      <div class="col-lg-6">
-        <div class="bg-white shadow-sm p-4 rounded-4">
-          <h2 class="fw-semibold text-primary mb-3">Despre liceu</h2>
-          <p class="text-muted mb-3">
-            Tradiție, performanță și profesori dedicați — la Colegiul Național „Unirea” formăm caractere puternice și minți deschise.
-          </p>
-          <a href="{% url 'admitere' %}" class="btn btn-primary fw-semibold px-4">Citește mai mult</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 <!-- LATEST EVENTS / NEWS -->
-<section class="py-5">
-  <div class="container">
-    <h2 class="text-center fw-bold mb-5 text-primary">Ultimele Evenimente</h2>
-    <div class="row justify-content-center g-4">
-      {% if all_pinned %}
-        {% for event in all_pinned %}
-          <div class="col-md-6 col-lg-5">
-            <a href="{% url 'publicatii' %}?scroll={{event.id}}" class="text-decoration-none">
-              <div class="d-flex align-items-start p-4 bg-light rounded-4 shadow-sm h-100 latest-news">
-                <!-- Circle Icon -->
-                <div class="flex-shrink-0 me-3">
-                  <div class="bg-primary text-white d-flex justify-content-center align-items-center rounded-circle" style="width: 70px; height: 70px;">
-                    <i class="bi bi-exclamation-circle-fill fs-3"></i>
-                  </div>
+<section class="events-section">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-badge">
+                <i class="bi bi-calendar-event me-2"></i>
+                Actualități
+            </div>
+            <h2 class="section-title">Ultimele Evenimente</h2>
+            <p class="section-subtitle">Urmărește cele mai recente știri și evenimente din viața școlii</p>
+        </div>
+        
+        <div class="events-grid">
+            {% if all_pinned %}
+                {% for event in all_pinned %}
+                <div class="event-card event-card-pinned" data-delay="{{ forloop.counter0|floatformat:0 }}">
+                    <a href="{% url 'publicatii' %}?scroll={{event.id}}" class="event-link">
+                        <div class="event-icon">
+                            <i class="bi bi-pin-angle-fill"></i>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-type">Anunț important</div>
+                            <h3 class="event-title">{{ event.titlu }}</h3>
+                        </div>
+                        <div class="event-arrow">
+                            <i class="bi bi-arrow-right"></i>
+                        </div>
+                    </a>
                 </div>
-                <!-- Event Info -->
-                <div>
-                  <h5 class="mb-1 fw-semibold text-dark">{{ event.titlu }}</h5>
-                  <p class="mb-0 text-secondary" style="font-size: 0.85rem;">
-                    {% if event.data_publicare %}
-                      {{ event.data_publicare|date:"d M Y" }} &middot; {{ event.data_publicare|time:"H:i" }}
-                    {% else %}
-                      Data necunoscută
-                    {% endif %}
-                  </p>
+                {% endfor %}
+            {% endif %}
+            
+            {% if latest_events %}
+                {% for event in latest_events|slice:":3" %}
+                <div class="event-card" data-delay="{{ forloop.counter0|add:all_pinned|length|floatformat:0 }}">
+                    <a href="{% url 'calendar' %}" class="event-link">
+                        <div class="event-icon">
+                            <i class="bi bi-calendar-event"></i>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-type">Eveniment</div>
+                            <h3 class="event-title">{{ event.title }}</h3>
+                        </div>
+                        <div class="event-arrow">
+                            <i class="bi bi-arrow-right"></i>
+                        </div>
+                    </a>
                 </div>
-              </div>
+                {% endfor %}
+            {% endif %}
+            
+            {% if not all_pinned and not latest_events %}
+                <div class="no-events">
+                    <div class="no-events-icon">
+                        <i class="bi bi-calendar-x"></i>
+                    </div>
+                    <p class="no-events-text">Nu există evenimente recente.</p>
+                </div>
+            {% endif %}
+        </div>
+        
+        {% if all_pinned or latest_events %}
+        <div class="section-footer">
+            <a href="{% url 'publicatii' %}" class="btn btn-outline-primary">
+                <i class="bi bi-newspaper me-2"></i>
+                Vezi toate publicațiile
+            </a>
+            <a href="{% url 'calendar' %}" class="btn btn-outline-primary">
+                <i class="bi bi-calendar3 me-2"></i>
+                Vezi calendarul complet
             </a>
         </div>
-        {% endfor %}
-      {% endif %}
-      {% if latest_events %}
-        {% for event in latest_events|slice:":3" %}
-        <div class="col-md-6 col-lg-5">
-          <a href="{% url 'calendar' %}" class="text-decoration-none">
-            <div class="d-flex align-items-start p-4 bg-light rounded-4 shadow-sm h-100 latest-news">
-              <!-- Circle Icon -->
-              <div class="flex-shrink-0 me-3">
-                <div class="bg-primary text-white d-flex justify-content-center align-items-center rounded-circle" style="width: 70px; height: 70px;">
-                  <i class="bi bi-calendar-event fs-3"></i>
-                </div>
-              </div>
-              <!-- Event Info -->
-              <div>
-                <h5 class="mb-1 fw-semibold text-dark">{{ event.title }}</h5>
-                <p class="mb-1 text-muted" style="font-size: 0.95rem;">
-                  {{ event.description|truncatewords:20 }}
-                </p>
-                <p class="mb-0 text-secondary" style="font-size: 0.85rem;">
-                  {% if event.startDateTime %}
-                    {{ event.startDateTime|date:"d M Y" }} &middot; {{ event.startDateTime|time:"H:i" }}
-                  {% else %}
-                    Data necunoscută
-                  {% endif %}
-                </p>
-              </div>
-            </div>
-          </a>
-        </div>
-        {% endfor %}
-      {% endif %}
-      {% if not all_pinned and not latest_events %}
-        <p class="text-center text-muted">Nu există evenimente recente.</p>
-      {% endif %}
+        {% endif %}
     </div>
-    
-  </div>
 </section>
 
 

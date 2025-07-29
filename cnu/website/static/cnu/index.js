@@ -90,7 +90,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     cards.forEach(card => observer.observe(card));
     values.forEach(value => observer.observe(value));
+    if (smiley1)
     observer.observe(smiley1);
+    if (smiley2)
     observer.observe(smiley2);
     
     const contactForm = document.querySelector('.contact-form');
@@ -124,6 +126,14 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
     }
+    // Listener for News
+    const grids = document.querySelectorAll('.news-grid');
+    grids.forEach((el, index) => {
+        setTimeout(() => {
+            el.classList.add('slide-in');
+        }, index * 100); // 100ms delay per item
+    });
+
         const select = document.getElementById("clasaSelect");
         const downloadSection = document.getElementById("downloadSection");
         const downloadLink = document.getElementById("downloadLink");

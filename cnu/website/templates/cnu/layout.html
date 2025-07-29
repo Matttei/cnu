@@ -376,27 +376,128 @@
     <!-- Body end-->
 
     <!-- Footer -->
-    <footer class="text-light text-center py-3 fixed-footer bg-dark">
-        <div class="container">
-            <!-- Social icons -->
-            <a href="https://www.facebook.com/unireaTurnuMagurele/?locale=ro_RO" target="_blank" class="text-light me-3 text-decoration-none">
-                <i class="fab fa-facebook fa-lg"></i>
-            </a>
-            <a href="https://www.instagram.com/colegiulnationalunireatr/" target="_blank" class="text-light me-3 text-decoration-none">
-                <i class="fab fa-instagram fa-lg"></i>
-            </a>
-            <a href="https://ro.wikipedia.org/wiki/Colegiul_Na%C8%9Bional_Unirea_din_Turnu-M%C4%83gurele" target="_blank" class="text-light text-decoration-none">
-                <i class="fab fa-wikipedia-w fa-lg"></i>
-            </a>
+        <!-- Enhanced Footer -->
+        <footer class="enhanced-footer">
+            <div class="main-container">
+                <div class="footer-content">
+                    <div class="footer-main">
+                        <!-- Brand Column -->
+                        <div class="footer-brand">
+                            <div class="footer-logo">
+                                <img src="{% static 'cnu/assets/placeholder.png' %}" alt="CNU Logo">
+                                <div class="footer-brand-text">
+                                    <h3>Colegiul Național "Unirea"</h3>
+                                    <p>Turnu Măgurele</p>
+                                </div>
+                            </div>
+                            <div class="footer-description">
+                                O instituție de învățământ cu tradiție, dedicată formării tinerilor pentru viitorul lor academic și profesional, oferind educație de calitate și oportunități de dezvoltare completă.
+                            </div>
+                            <div class="social-section">
+                                <h4>Urmărește-ne</h4>
+                                <div class="social-links">
+                                    <a href="https://www.facebook.com/unireaTurnuMagurele/" class="social-link" target="_blank">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com/colegiulnationalunireatr/" class="social-link" target="_blank">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                    <a href="https://ro.wikipedia.org/wiki/Colegiul_Na%C8%9Bional_Unirea_din_Turnu-M%C4%83gurele" class="social-link" target="_blank">
+                                        <i class="fab fa-wikipedia-w"></i>
+                                    </a>
+                                    <a href="mailto:cnunirea.licee@yahoo.com" class="social-link">
+                                        <i class="fas fa-envelope"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
 
-            <!-- Copyright -->
-            <div>
-                <small>&copy; 1889 - {% now "Y" %} Colegiul National 'Unirea' Turnu Magurele.| Designed & Organized by: <a href='https://github.com/Matttei' class="text-decoration-none" target="_blank" style="color: #f7c200; font-weight: bold; font-size:16px;">Dorcea Matei <i class="bi bi-code-slash"></i></a></small>
+                        <!-- Quick Links -->
+                        <div class="footer-column">
+                            <h4>Navigare Rapidă</h4>
+                            <ul class="footer-links">
+                                <li><a href="/"><i class="fas fa-home"></i>Acasă</a></li>
+                                <li><a href="/despre/"><i class="fas fa-info-circle"></i>Despre noi</a></li>
+                                <li><a href="/noutati/"><i class="fas fa-newspaper"></i>Noutăți</a></li>
+                                <li><a href="/proiecte/"><i class="fas fa-project-diagram"></i>Proiecte</a></li>
+                                <li><a href="/activitati/"><i class="fas fa-calendar-check"></i>Activități</a></li>
+                                <li><a href="/contact/"><i class="fas fa-envelope"></i>Contact</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Academic Section -->
+                        <div class="footer-column">
+                            <h4>Academic</h4>
+                            <ul class="footer-links">
+                                <li><a href="/bacalaureat/"><i class="fas fa-graduation-cap"></i>Bacalaureat</a></li>
+                                <li><a href="/admitere/"><i class="fas fa-user-plus"></i>Admitere</a></li>
+                                <li><a href="/orar/"><i class="fas fa-clock"></i>Orar</a></li>
+                                <li><a href="/calendar/"><i class="fas fa-calendar-alt"></i>Calendar</a></li>
+                                <li><a href="/personal_didactic/"><i class="fas fa-chalkboard-teacher"></i>Cadre didactice</a></li>
+                                <li><a href="https://edus.ro/" target="_blank"><i class="fas fa-external-link-alt"></i>Catalog Electronic</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Contact Info -->
+                        <div class="footer-column">
+                            <h4>Informații Contact</h4>
+                            <ul class="contact-info">
+                                <li>
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <div>
+                                        <strong>Adresa:</strong><br>
+                                        Strada Castanilor 25<br>
+                                        Turnu Măgurele 145200<br>
+                                        Teleorman, România
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-phone"></i>
+                                    <div>
+                                        <strong>Telefon:</strong><br>
+                                        +40 247 416 734
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-envelope"></i>
+                                    <div>
+                                        <strong>Email:</strong><br>
+                                        cnunirea.licee@yahoo.com
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-clock"></i>
+                                    <div>
+                                        <strong>Program:</strong><br>
+                                        Luni - Vineri: 8:00 - 16:00
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="footer-bottom">
+                        <div class="footer-copyright">
+                            <p>&copy; 1889 - 2024 Colegiul Nacional 'Unirea' Turnu Magurele. Toate drepturile rezervate.</p>
+                        </div>
+                        <div class="footer-developer">
+                            <i class="fas fa-code"></i>
+                            <span>Developed by</span>
+                            <a href="https://github.com/Matttei" target="_blank">Dorcea Matei</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
     <!-- End Footer -->
-
+    <div class="floating-elements">
+        <a href="#top" class="floating-btn scroll-to-top" title="Înapoi sus">
+            <i class="fas fa-arrow-up"></i>
+        </a>
+        <a href="/contact/" class="floating-btn contact-btn" title="Contact rapid">
+            <i class="fas fa-phone"></i>
+        </a>
+    </div>
     <!-- Scripts -->
     <script>
         window.addEventListener('load', function () {
@@ -509,6 +610,17 @@
                     event.stopPropagation();
                 });
             });
+        // Show/hide scroll to top button
+        window.addEventListener('scroll', function() {
+            const scrollBtn = document.querySelector('.scroll-to-top');
+            if (window.pageYOffset > 300) {
+                scrollBtn.style.opacity = '1';
+                scrollBtn.style.visibility = 'visible';
+            } else {
+                scrollBtn.style.opacity = '0';
+                scrollBtn.style.visibility = 'hidden';
+            }
+        });
         });
     </script>
     <script src="{% static 'cnu/index.js' %}"></script>

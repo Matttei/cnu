@@ -11,33 +11,51 @@
 
         <!-- Active Events -->
         <div class="active-events mt-4">
-            <h4 class="ml-1 mb-4 text-success border-bottom pb-2">📅 Evenimente active</h4>
+            <div class="section-header-events">
+                <h4>Evenimente Active</h4>
+            </div>
             {% if active_events %}
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                     {% for event in active_events %}
-                        <div class="col">
-                            <div class="card h-100 shadow-sm border-success border-2">
-                                <div class="card-body">
-                                    <h5 class="card-title text-success fw-bold">{{ event.title }}</h5>
-                                    <p class="card-text">{{ event.description|truncatewords:20 }}</p>
-                                    <div class="mb-2">
-                                        <i class="bi bi-calendar-event"></i>
-                                        <small class="text-muted">
-                                            {{ event.startDateTime|date:"d M Y H:i" }} – {{ event.endDateTime|date:"d M Y H:i" }}
-                                        </small>
-                                    </div>
-                                        <div>
-                                            {% if event.classes %}
-                                                <span class="badge bg-success-subtle text-success border border-success me-1">
-                                                    Clasa: {{ event.get_classes_display }}
-                                                </span>
-                                            {% else %}
-                                                <span class="badge bg-secondary-subtle text-muted">Fără clasă asociată</span>
-                                            {% endif %}
-                                        </div>
-                                </div>
+                <div class="event-card active">
+                    <div class="event-body">
+                        <div class="event-header">
+                            <div class="event-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="event-info">
+                                <h5 class="event-title">{{ event.title }}</h5>
+                                <span class="event-status status-active">
+                                    <i class="fas fa-circle"></i>
+                                    Activ
+                                </span>
                             </div>
                         </div>
+                        
+                        <p class="event-description">
+                            {{ event.description }}
+                        </p>
+                        
+                        <div class="event-meta d-flex justify-content-between">
+                            <div class="event-date">
+                                <div class="date-icon">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                                <div class="date-info">
+                                    <div class="date-range">{{ event.startDateTime|date:"d M Y H:i" }} – {{ event.endDateTime|date:"d M Y H:i" }}</div>
+                                    <div class="date-label">Perioada desfășurare</div>
+                                </div>
+                            </div>
+                            
+                            <div class="event-class">
+                                <span class="class-badge">
+                                    <i class="fas fa-users"></i>
+                                    Clasa: {{ event.get_classes_display }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                     {% endfor %}
                 </div>
             {% else %}
@@ -47,33 +65,51 @@
 
         <!-- Expired Events -->
         <div class="past-events mt-5">
-            <h4 class="ml-1 mb-4 text-secondary border-bottom pb-2">🕘 Ultimele evenimente</h4>
+            <div class="section-header-events expired mr-2">
+                <h4>Ultimele Evenimente</h4>
+            </div>
             {% if expired_events %}
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                     {% for event in expired_events %}
-                        <div class="col">
-                            <div class="card h-100 shadow-sm border-secondary border-2">
-                                <div class="card-body">
-                                    <h5 class="card-title text-secondary fw-bold">{{ event.title }}</h5>
-                                    <p class="card-text">{{ event.description|truncatewords:20 }}</p>
-                                    <div class="mb-2">
-                                        <i class="bi bi-calendar-check"></i>
-                                        <small class="text-muted">
-                                            {{ event.startDateTime|date:"d M Y H:i" }} – {{ event.endDateTime|date:"d M Y H:i" }}
-                                        </small>
-                                    </div>
-                                        <div>
-                                            {% if event.classes %}
-                                                <span class="badge bg-success-subtle text-success border border-success me-1">
-                                                    Clasa: {{ event.get_classes_display }}
-                                                </span>
-                                            {% else %}
-                                                <span class="badge bg-secondary-subtle text-muted">Fără clasă asociată</span>
-                                            {% endif %}
-                                        </div>
-                                </div>
+                <div class="event-card expired">
+                    <div class="event-body">
+                        <div class="event-header">
+                            <div class="event-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="event-info">
+                                <h5 class="event-title">{{ event.title }}</h5>
+                                <span class="event-status status-active">
+                                    <i class="fas fa-circle"></i>
+                                    Inactiv
+                                </span>
                             </div>
                         </div>
+                        
+                        <p class="event-description">
+                            {{ event.description }}
+                        </p>
+                        
+                        <div class="event-meta d-flex justify-content-between">
+                            <div class="event-date">
+                                <div class="date-icon">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                                <div class="date-info">
+                                    <div class="date-range">{{ event.startDateTime|date:"d M Y H:i" }} – {{ event.endDateTime|date:"d M Y H:i" }}</div>
+                                    <div class="date-label">Perioada desfășurare</div>
+                                </div>
+                            </div>
+                            
+                            <div class="event-class">
+                                <span class="class-badge">
+                                    <i class="fas fa-users"></i>
+                                    Clasa: {{ event.get_classes_display }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                     {% endfor %}
                 </div>
             {% else %}
