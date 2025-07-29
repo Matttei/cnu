@@ -15,7 +15,7 @@
                 </div>
                 <div class="staff-info">
                     <div class="staff-name">{{ prof }}</div>
-                    <div class="staff-role">Titular</div>
+                    <div class="staff-role">{% if prof == 'Consilier Georgeta FUNARU' %}{% else %}Titular{% endif %}</div>
                 </div>
             </div>
             {% endfor %}
