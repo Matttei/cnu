@@ -10,18 +10,37 @@ let accessibilityState = {
 document.addEventListener('DOMContentLoaded', function () {
     
     loadAccessibilitySettings();
-    
-    // Add event listeners for outside clicks and escape key
     addEventListeners();
     // ----------------------------
     // 1. INITIALIZATION & UTILITIES
     // ----------------------------
 
     // Utility function to show messages
+    let messageCount = 0;
+
     function showMessage(message, isSuccess = false) {
         const messageEl = document.createElement('div');
         messageEl.className = 'message';
+
+        // Assign a unique ID
+        const id = `message-${messageCount++}`;
+        messageEl.id = id;
+
         messageEl.innerHTML = message;
+
+        const hideBtn = document.createElement('button');
+        hideBtn.innerHTML = 'X';
+        hideBtn.classList.add('btn', 'btn-hide', 'ml-2');
+        
+        // Set the ID on the button
+        hideBtn.setAttribute('data-target-id', id);
+        hideBtn.addEventListener('click', function () {
+            const targetId = this.getAttribute('data-target-id');
+            const targetEl = document.getElementById(targetId);
+            if (targetEl) targetEl.remove();
+        });
+
+        messageEl.append(hideBtn);
 
         if (isSuccess) {
             messageEl.style.backgroundColor = '#d4edda';
@@ -31,10 +50,51 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.appendChild(messageEl);
 
         setTimeout(() => {
-            messageEl.remove();
-        }, 7000);
+            const targetEl = document.getElementById(id);
+            if (targetEl) targetEl.remove();
+        }, 3000);
     }
 
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('success') === '1') {
+        showMessage('✅ Anunțul a fost publicat cu succes!', true);
+    }
+    else if(params.get('scroll')){
+        const scrollTargetId = params.get('scroll');
+        // Scroll to the TargetId
+        const targetElement = document.getElementById(scrollTargetId);
+        if (targetElement){
+            targetElement.scrollIntoView({behavior: 'smooth'})
+
+            // Animation after scrolling
+            targetElement.classList.add('highlight-animation');
+        }
+    }
+    const cards = document.querySelectorAll(".card-grid");
+    const values = document.querySelectorAll(".value-item");
+    const smiley1 = document.querySelector('.smiley-face');
+    const smiley2 = document.querySelector('.smiley-face2');
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate");
+            observer.unobserve(entry.target); // Stop observing once it's animated
+          }
+        });
+      },
+      {
+        threshold: 0.2 // Trigger when 20% of the element is visible
+      }
+    );
+
+    cards.forEach(card => observer.observe(card));
+    values.forEach(value => observer.observe(value));
+    if (smiley1)
+    observer.observe(smiley1);
+    if (smiley2)
+    observer.observe(smiley2);
+    
     const contactForm = document.querySelector('.contact-form');
     const feedback = document.querySelector('.form-feedback'); 
     if (contactForm){
@@ -66,6 +126,14 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
     }
+    // Listener for News
+    const grids = document.querySelectorAll('.news-grid');
+    grids.forEach((el, index) => {
+        setTimeout(() => {
+            el.classList.add('slide-in');
+        }, index * 100); // 100ms delay per item
+    });
+
         const select = document.getElementById("clasaSelect");
         const downloadSection = document.getElementById("downloadSection");
         const downloadLink = document.getElementById("downloadLink");
@@ -97,8 +165,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-    
-    
 });
 function closeMenu() {
     const menu = document.getElementById('accessibility-menu');
