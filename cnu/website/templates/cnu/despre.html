@@ -29,19 +29,19 @@
                 <div class="col-lg-6">
                     <div class="stats-grid">
                         <div class="stat-item">
-                            <div class="stat-number">600+</div>
+                            <div class="stat-number" data-target="550" data-suffix="+">0</div>
                             <div class="stat-label">Elevi activi</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number">40+</div>
+                            <div class="stat-number" data-target="32">0</div>
                             <div class="stat-label">Profesori dedicați</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number">95%</div>
+                            <div class="stat-number" data-target="95" data-suffix="%">0</div>
                             <div class="stat-label">Rata de promovare</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number">30+</div>
+                            <div class="stat-number" data-target="30">0</div>
                             <div class="stat-label">Activități extracurriculare</div>
                         </div>
                     </div>
@@ -126,5 +126,44 @@
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const counters = document.querySelectorAll('.stat-number');
 
+    const animateCount = (el, target) => {
+        let count = 0;
+        const speed = 500; 
+        const suffix = el.dataset.suffix || '';
+        const update = () => {
+            const increment = target / speed;
+            count += increment;
+
+            if (count < target) {
+                el.textContent = Math.ceil(count) + suffix;
+                requestAnimationFrame(update);
+            } else {
+                el.textContent = target + suffix;
+            }
+        };
+
+        update();
+    };
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    if (!counter.classList.contains('counted')) {
+                        counter.classList.add('counted');
+                        animateCount(counter, target);
+                    }
+                });
+            }
+        });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => observer.observe(counter));
+});
+</script>
 {% endblock %}

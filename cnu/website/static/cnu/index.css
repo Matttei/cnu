@@ -271,16 +271,12 @@ p {
     background: #ffffff;
     border-radius: 24px;
     width: 100%;
-    padding: 4rem 3rem;
+    padding: 60px 50px;
     box-shadow: 0 20px 60px rgba(0,0,0,0.08);
     animation: fadeInUp 1s ease-in-out;
     margin-bottom: 60px;
 }
-.about-section.container{
-    max-width: 70%;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-}
+
 
 .about-section h2 {
     font-size: 2.4rem;

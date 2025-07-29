@@ -207,7 +207,7 @@ def personal_didactic(request):
         ('Educație vizuală', ['Prof. Ovidiu Nicolae ORBEȘTEANU']),
         ('Educație fizică și sport', ['Prof. Mădălin BARBU']),
         ('Informatică și TIC', ['Prof. Miruna GRUIA', 'Prof. Nicoleta MARINESCU', 'Prof. Gabriel DEFTA']),
-        ('Religie', ['Prof. Constantin COJOACĂ', 'Prof. Constantin COJOACĂ']),
+        ('Religie', ['Prof. Constantin COJOACĂ', 'Prof. Gabriel DEFTA']),
     ]
     return render(request, 'cnu/personal_didactic.html', {
         'categories': categories,
