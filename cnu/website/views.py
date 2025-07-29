@@ -60,6 +60,8 @@ def despre(request):
 def admitere(request):
     return render(request, 'cnu/admitere.html')
 
+import logging
+
 def contact_form(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -68,7 +70,6 @@ def contact_form(request):
 
         ContactForm.objects.create(name=name, email=email, message=message)
 
-        # Compose email
         subject = f"Mesaj nou de la {name}"
         body = f"""
         Ai primit un mesaj nou de pe formularul de contact.
@@ -76,16 +77,22 @@ def contact_form(request):
         📧 Email: {email}
         📝 Mesaj:{message}
         """
-        send_mail(
-            subject,
-            body,
-            settings.EMAIL_HOST_USER,           # from email
-            ['mateidorcea@gmail.com'],          # to email (cnunirea.licee@yahoo.com)
-            fail_silently=False,
-        )
-        return JsonResponse({'success': True, 'message': 'Mesajul a fost trimis, o să vă contactăm în cel mai scurt timp posibil! ✅'})
 
+        try:
+            send_mail(
+                subject,
+                body,
+                settings.EMAIL_HOST_USER,
+                ['mateidorcea@gmail.com'],
+                fail_silently=False,
+            )
+        except Exception as e:
+            logging.error(f"EMAIL ERROR: {str(e)}")
+            return JsonResponse({'error': 'Eroare la trimitere email.'}, status=500)
+
+        return JsonResponse({'success': True, 'message': 'Mesajul a fost trimis, o să vă contactăm în cel mai scurt timp posibil! ✅'})
     return JsonResponse({'error': 'Metodă neacceptată.'}, status=400)
+
 
 def orar(request):
     clase = []
