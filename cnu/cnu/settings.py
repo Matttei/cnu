@@ -1,4 +1,5 @@
 import os
+import dj_database_url
 """
 Django settings for cnu project.
 
@@ -81,12 +82,21 @@ WSGI_APPLICATION = 'cnu.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('Db_Name'),
+        'USER': os.environ.get('Db_User'),
+        'PASSWORD': os.environ.get('Db_Password'),
+        'HOST': os.environ.get('Db_Host'),
+        'PORT': '5432',
     }
 }
+
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
@@ -178,4 +188,4 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
 
-# Sa adaugi pe site
+# Sa adaugi pe site, posibil sa trb sa fac cu api ca sa pot da load la postari de pe cloud
